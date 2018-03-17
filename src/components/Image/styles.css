@@ -1,0 +1,17 @@
+.uploadedPhoto {
+  margin-top: 20px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  width: 250px;
+  height: 150px;
+  padding-bottom: 52px;
+  z-index: 0; }
+
+.styledImageCancelIcon {
+  position: absolute;
+  margin-top: 20px;
+  right: -6px;
+  top: -7px;
+  cursor: pointer;
+  z-index: 1; }

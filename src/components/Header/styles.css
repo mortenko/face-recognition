@@ -1,0 +1,36 @@
+.header {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  height: 70px;
+  padding-top: 20px; }
+
+.splitter {
+  border-right: 1px solid #fff; }
+
+.ml-logo {
+  position: relative;
+  width: 250px;
+  margin-left: 32px; }
+
+.ml-text {
+  color: #fff;
+  position: absolute;
+  font-size: 12px;
+  top: 33px;
+  left: 12px; }
+
+.woman-head-picture {
+  position: absolute;
+  right: 0;
+  top: 0; }
+
+ul li {
+  display: inline-block;
+  padding-right: 65px;
+  font-weight: bold; }
+  ul li a {
+    color: #fff;
+    text-decoration: none;
+    cursor: pointer; }

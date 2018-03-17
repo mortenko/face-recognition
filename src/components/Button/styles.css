@@ -1,0 +1,41 @@
+.button, .buttonUpload {
+  height: 46px;
+  width: 176px;
+  background-color: #fe6e62;
+  position: relative;
+  border-radius: 23px;
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer; }
+  .button .buttonText, .buttonUpload .buttonText {
+    height: 21px;
+    width: 70px;
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    letter-spacing: 1.5px;
+    text-align: center; }
+
+.buttonUpload {
+  padding-top: 12px;
+  padding-bottom: 13px;
+  padding-left: 61px;
+  padding-right: 45px; }
+
+input[type="file"] {
+  display: none; }
+
+.styledNextIcon {
+  position: absolute;
+  right: 0;
+  padding-right: 15px; }
+
+.styledBackIcon {
+  position: absolute;
+  top: 15px;
+  left: 15px; }
+
+.styledPlusIcon {
+  position: absolute;
+  left: 0;
+  margin-left: 15px;
+  margin-top: 3px; }

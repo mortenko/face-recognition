@@ -1,0 +1,75 @@
+.uploadZipContainer {
+  height: 389px;
+  margin-top: 50px;
+  padding-left: 30px;
+  padding-right: 19px; }
+
+.uploadZipTitle {
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  letter-spacing: 2px;
+  text-align: left;
+  color: #4a4a4a; }
+
+.fileZipImageContainer {
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 284px;
+  height: 250px;
+  opacity: 0.3;
+  border-radius: 10px;
+  border: 1px dashed #383f46;
+  margin-top: 80px;
+  margin-bottom: 33px; }
+
+.fileName {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  text-align: center;
+  color: #383f46;
+  margin-top: 30px;
+  margin-bottom: 23px; }
+
+.textInfo {
+  width: 264px;
+  font-size: 12px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1px;
+  color: #4a4a4a;
+  padding-right: 19px; }
+
+.bottomContainer {
+  position: absolute;
+  width: 100%;
+  margin-left: 40px; }
+
+.searchUserName {
+  font-size: 14px;
+  font-weight: bold;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: normal;
+  letter-spacing: 1.2px;
+  text-align: left;
+  color: #383f46; }
+
+.styledCancelIcon {
+  position: absolute;
+  right: -8px;
+  top: -12px;
+  cursor: pointer;
+  z-index: 1; }
+
+.visible {
+  visibility: visible; }
+
+.hidden {
+  visibility: hidden; }

@@ -1,0 +1,58 @@
+@import "../../styles/colors";
+@import "../../styles/mixins";
+
+.card-popup-container {
+  background-color: $white;
+  width: 343px;
+  height: 620px;
+  padding-top: 33px;
+  border-radius: 31px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
+  @include margin(20px, null, 100px, null);
+}
+
+.card-popup-gallery {
+  @extend .card-popup-container;
+
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.card-header {
+  position: relative;
+}
+
+.card-back-icon {
+  position: absolute;
+  top: -5px;
+  left: 29px;
+  cursor: pointer;
+}
+
+.title {
+  color: $shadow-grey;
+  @include font-property(24px, bold, null, null);
+  letter-spacing: 2px;
+  text-align: left;
+  width: 303px;
+  padding: 20px;
+}
+
+.description {
+  @include padding(null, null, 20px, 20px);
+  @include font-property(12px, 300, null, null);
+  color: $shadow-grey;
+  letter-spacing: 1px;
+  text-align: left;
+  width: 303px;
+}
+
+.name {
+  color: $background-grey;
+  height: 16px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  text-align: left;
+}
+

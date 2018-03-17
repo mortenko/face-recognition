@@ -1,0 +1,78 @@
+.uploadPhotoContainer {
+  position: relative;
+  height: 389px;
+  margin-top: 50px;
+  padding-left: 30px;
+  padding-right: 19px; }
+
+.photoContainer {
+  position: relative;
+  height: 215px; }
+
+.bottomContainer {
+  position: absolute;
+  width: 100%;
+  margin-left: 40px; }
+
+.nameInputContainer {
+  border: 2px solid rgba(56, 63, 70, 0.25);
+  border-left: none;
+  border-right: none;
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  width: 100%;
+  margin-top: 22px; }
+
+.nameInput {
+  margin-top: 13px;
+  margin-bottom: 5px;
+  height: 32px;
+  width: 303px;
+  color: #4a4a4a;
+  border: 0;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 1px;
+  outline: none; }
+
+.numberInfo {
+  color: #fe6e62;
+  font-size: 24px;
+  font-weight: bold;
+  padding-right: 30px; }
+
+.infoContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 13px; }
+
+.textInfo {
+  font-size: 18px;
+  font-weight: 300;
+  font-style: normal;
+  font-stretch: normal;
+  margin-top: 2px;
+  color: #4a4a4a;
+  width: 264px;
+  letter-spacing: 1px;
+  padding-right: 19px; }
+
+.uploadPhotoTitle {
+  font-size: 24px;
+  font-weight: bold;
+  font-style: normal;
+  padding-bottom: 24px;
+  letter-spacing: 2px;
+  text-align: left;
+  color: #4a4a4a; }
+
+.show {
+  display: block; }
+
+.hide {
+  display: none; }
+
+.hidden {
+  visibility: hidden; }

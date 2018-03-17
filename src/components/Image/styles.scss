@@ -1,0 +1,19 @@
+@import "../../styles/mixins";
+
+.uploadedPhoto {
+  @include margin(20px, null, auto, auto);
+  position: relative;
+  width: 250px;
+  height: 150px;
+  padding-bottom: 52px;
+  z-index: 0;
+}
+
+.styledImageCancelIcon {
+  position: absolute;
+  margin-top: 20px;
+  right: -6px;
+  top: -7px;
+  cursor: pointer;
+  z-index: 1;
+}

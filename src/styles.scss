@@ -1,0 +1,13 @@
+@import "styles/global";
+@import "styles/fonts/index.css";
+
+html {
+  width: 100%;
+  background-color: $background-grey;
+  font-size: $font-size;
+  font-family: $font-family;
+  body {
+    height: 100%;
+  }
+}
+

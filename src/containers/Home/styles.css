@@ -1,0 +1,49 @@
+.card-popup-container, .card-popup-gallery {
+  background-color: #fff;
+  width: 343px;
+  height: 620px;
+  padding-top: 33px;
+  border-radius: 31px;
+  box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25);
+  margin-top: 20px;
+  margin-left: 100px; }
+
+.card-popup-gallery {
+  width: 80%;
+  margin-left: auto;
+  margin-right: auto; }
+
+.card-header {
+  position: relative; }
+
+.card-back-icon {
+  position: absolute;
+  top: -5px;
+  left: 29px;
+  cursor: pointer; }
+
+.title {
+  color: #4a4a4a;
+  font-size: 24px;
+  font-weight: bold;
+  letter-spacing: 2px;
+  text-align: left;
+  width: 303px;
+  padding: 20px; }
+
+.description {
+  padding-left: 20px;
+  padding-right: 20px;
+  font-size: 12px;
+  font-weight: 300;
+  color: #4a4a4a;
+  letter-spacing: 1px;
+  text-align: left;
+  width: 303px; }
+
+.name {
+  color: #383f46;
+  height: 16px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  text-align: left; }

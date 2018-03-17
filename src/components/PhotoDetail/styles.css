@@ -1,0 +1,32 @@
+.photo-container {
+  position: absolute;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto; }
+
+.photo-header {
+  display: flex;
+  flex-flow: row;
+  position: relative;
+  width: 100%;
+  justify-content: space-between; }
+
+.gallery-icon-group {
+  display: flex;
+  justify-content: space-between;
+  width: 103px;
+  position: absolute;
+  right: 30px; }
+
+.gallery-icon-circle {
+  height: 44px;
+  width: 44px;
+  border-radius: 23px;
+  background-color: #fe6e62;
+  cursor: pointer; }
+  .gallery-icon-circle img {
+    padding-left: 14px;
+    padding-top: 14px; }
+
+.marked-photo {
+  text-align: center; }

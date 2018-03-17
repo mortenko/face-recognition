@@ -1,0 +1,85 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+
+.uploadPhotoContainer {
+  position: relative;
+  height: 389px;
+  margin-top: 50px;
+  padding-left: 30px;
+  padding-right: 19px;
+}
+
+.photoContainer {
+  position: relative;
+  height: 215px;
+}
+
+.bottomContainer {
+  position: absolute;
+  width: 100%;
+  margin-left: 40px;
+}
+
+.nameInputContainer {
+  border: 2px solid rgba(56, 63, 70, 0.25);
+  @include border(null, null, none, none);
+  display: flex;
+  flex-direction: row;
+  align-items: baseline;
+  width: 100%;
+  margin-top: 22px;
+}
+
+.nameInput {
+  @include margin(13px, 5px, null, null);
+  @include size(32px, 303px);
+  color: $shadow-grey;
+  border: 0;
+  font-size: 12px;
+  font-style: italic;
+  letter-spacing: 1px;
+  outline: none;
+}
+
+.numberInfo {
+  color: $salomon-color;
+  font-size: 24px;
+  font-weight: bold;
+  padding-right: 30px;
+}
+
+.infoContainer {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-top: 13px;
+}
+
+.textInfo {
+  @include font-property(18px, 300, normal, normal);
+  margin-top: 2px;
+  color: $shadow-grey;
+  width: 264px;
+  letter-spacing: 1px;
+  padding-right: 19px;
+}
+
+.uploadPhotoTitle {
+  @include font-property(24px, bold, normal, null);
+  padding-bottom: 24px;
+  letter-spacing: 2px;
+  text-align: left;
+  color: $shadow-grey;
+}
+
+.show {
+  display: block;
+}
+
+.hide {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}

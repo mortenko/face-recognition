@@ -1,0 +1,51 @@
+@import "../../styles/mixins";
+@import "../../styles/colors";
+
+%button-styles {
+  @include size(46px, 176px);
+  background-color: $salomon-color;
+  position: relative;
+  border-radius: 23px;
+  box-shadow: 0 2px 9px 0 rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+
+  .buttonText {
+    @include size(21px, 70px);
+    @include font-property(18px, bold, null, null);
+    color: $white;
+    letter-spacing: 1.5px;
+    text-align: center;
+  }
+}
+
+.button {
+  @extend %button-styles;
+}
+
+.buttonUpload {
+  @extend %button-styles;
+  @include padding(12px, 13px, 61px, 45px);
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.styledNextIcon {
+  position: absolute;
+  right: 0;
+  padding-right: 15px;
+}
+.styledBackIcon {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+}
+.styledPlusIcon {
+  position: absolute;
+  left: 0;
+  margin-left: 15px;
+  margin-top: 3px;
+}
+
+
