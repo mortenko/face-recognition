@@ -3,7 +3,7 @@ import React, { Component, Fragment } from "react";
 import downloadIcon from "assets/download_icon.svg";
 import shareIcon from "assets/share_icon.svg";
 import Image from "components/Image";
-import PhotoDetail from "components/PhotoDetail";
+import pathParse from "path-parse";
 import "./styles.css";
 
 export default class ImageGallery extends Component {
@@ -53,17 +53,21 @@ export default class ImageGallery extends Component {
             ) : (
               photos.map(srcPath => {
                 const relativePath = srcPath.split("public/").pop();
+                const parseImgPath = pathParse(relativePath);
                 return (
                   <div
-                    className="gallery__content__photo"
+                    className="gallery__photo"
                     onClick={() => this.handleClickedPhoto(relativePath)}
                   >
                     <Image
-                      key={relativePath}
+                      key={parseImgPath.name}
                       src={relativePath}
+                      height={262}
+                      width={183}
                       handleRemoveUploadedFile={this.handleRemoveUploadedFile}
                       remove
                     />
+                    <span className="gallery__photo__name">{parseImgPath.base}</span>
                   </div>
                 );
               })

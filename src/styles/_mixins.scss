@@ -31,7 +31,7 @@
   height: $height;
   width: $width;
 }
-@mixin flex-property($display, $flex-flow, $justify-content, $align-items) {
+@mixin flex-property($display,$flex-flow, $justify-content, $align-items) {
   display: $display;
   flex-flow: $flex-flow;
   justify-content: $justify-content;

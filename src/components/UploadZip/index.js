@@ -59,7 +59,7 @@ export default class UploadZip extends Component {
         >
           <div
             onClick={() => this.handleRemoveUploadedZip(archivePath)}
-            className="cancel__icon"
+            className="upload__zip__cancel__icon"
           >
             <Image src={cancelIcon} />
           </div>

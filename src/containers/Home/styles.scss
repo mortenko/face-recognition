@@ -1,5 +1,5 @@
-@import "../../styles/colors";
-@import "../../styles/mixins";
+@import "styles/colors";
+@import "styles/mixins";
 
 .card__popup {
   @include size(620px, 343px);
@@ -12,9 +12,8 @@
 
 .card__popup__gallery {
   @extend .card__popup;
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto;
+  @include padding(21px,62px,28px,28px);
+  @include size(auto, 1153px);
 }
 
 .card__popup__header {

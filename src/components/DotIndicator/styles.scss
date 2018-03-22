@@ -1,18 +1,18 @@
-@import "../../styles/mixins";
+@import "styles/mixins";
 
 $dot__indicator--on: #fd7163;
 $dot__indicator--off: #9b9b9b;
-
-.dotIndicator {
-  display: flex;
-  justify-content: center;
-  flex-flow: row;
-}
 
 %dotIndicator__shared {
   @include size(7px,7px);
   border-radius: 5px;
   margin-right: 10px;
+}
+
+.dotIndicator {
+  display: flex;
+  justify-content: center;
+  flex-flow: row;
 }
 
 .dot__indicator--on {

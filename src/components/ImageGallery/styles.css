@@ -46,15 +46,25 @@
 .gallery__content {
   display: flex;
   flex-flow: row wrap;
-  justify-content: space-between;
-  padding-bottom: 28px;
-  padding-left: 28px;
-  padding-right: 28px; }
+  justify-content: space-between; }
 
-.gallery__content__photo {
+.gallery__photo {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  height: auto;
+  width: 183px;
   margin-top: 20px;
+  margin-right: 16px;
   position: relative;
-  cursor: pointer; }
+  cursor: pointer;
+  border: solid 1px rgba(56, 63, 70, 0.25); }
+
+.gallery__photo__name {
+  padding-top: 9px;
+  padding-bottom: 11px;
+  padding-left: 17px;
+  padding-right: 17px; }
 
 .spinner {
   margin-left: auto;

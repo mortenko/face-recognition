@@ -89,6 +89,7 @@ app.route("/file/unzip").post((req, res) => {
 
   py.stdin.write(`${imagePath}\n`);
   py.stdin.write(`${userName}\n`);
+  // change for linux to py.stdin.write(`${extractDir}`);
   py.stdin.write(`${extractDir}/${originalFileName}`);
   py.stdin.end();
 

@@ -9,9 +9,12 @@
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25); }
 
 .card__popup__gallery {
-  width: 80%;
-  margin-left: auto;
-  margin-right: auto; }
+  padding-top: 21px;
+  padding-bottom: 62px;
+  padding-left: 28px;
+  padding-right: 28px;
+  height: auto;
+  width: 1153px; }
 
 .card__popup__header {
   position: relative; }

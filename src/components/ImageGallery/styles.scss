@@ -1,9 +1,8 @@
-@import "../../styles/colors";
-@import "../../styles/mixins";
+@import "styles/colors";
+@import "styles/mixins";
 
 %gallery__text__shared {
   @include font-property(24px, bold, normal, normal);
-
   letter-spacing: 2px;
   color: $shadow-grey;
 }
@@ -57,13 +56,20 @@
 
 .gallery__content {
   @include flex-property(flex, row wrap, space-between, null);
-  @include padding(null, 28px, 28px, 28px);
 }
 
-.gallery__content__photo {
+.gallery__photo {
+  @include flex-property(flex, column, null, center);
+  @include size(auto, 183px);
   margin-top: 20px;
+  margin-right: 16px;
   position: relative;
   cursor: pointer;
+  border: solid 1px rgba(56, 63, 70, 0.25);
+}
+
+.gallery__photo__name {
+  @include padding(9px, 11px, 17px, 17px);
 }
 
 .spinner {

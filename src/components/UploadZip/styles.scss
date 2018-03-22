@@ -1,6 +1,6 @@
-@import "../../styles/_mixins";
-@import "../../styles/colors";
-@import "../../styles/_shared";
+@import "styles/_mixins";
+@import "styles/colors";
+@import "styles/_shared";
 
 .upload__zip {
   position: relative;
@@ -51,7 +51,7 @@
 .upload__zip__file--hidden {
   visibility: hidden;
 }
-.cancel__icon {
+.upload__zip__cancel__icon {
   @include position(absolute,-12px,null,null,-8px);
   cursor: pointer;
   z-index: 1;

@@ -1,13 +1,13 @@
-.dotIndicator {
-  display: flex;
-  justify-content: center;
-  flex-flow: row; }
-
 .dot__indicator--on, .dot__indicator--off {
   height: 7px;
   width: 7px;
   border-radius: 5px;
   margin-right: 10px; }
+
+.dotIndicator {
+  display: flex;
+  justify-content: center;
+  flex-flow: row; }
 
 .dot__indicator--on {
   background-color: #fd7163; }

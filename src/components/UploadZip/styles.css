@@ -57,7 +57,7 @@
 .upload__zip__file--hidden {
   visibility: hidden; }
 
-.cancel__icon {
+.upload__zip__cancel__icon {
   position: absolute;
   top: -12px;
   right: -8px;
