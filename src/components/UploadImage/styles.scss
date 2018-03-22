@@ -1,36 +1,39 @@
 @import "../../styles/mixins";
 @import "../../styles/colors";
+@import "../../styles/_shared";
 
-.uploadPhotoContainer {
+.upload__photo {
   position: relative;
   height: 389px;
   margin-top: 50px;
-  padding-left: 30px;
-  padding-right: 19px;
 }
 
-.photoContainer {
-  position: relative;
-  height: 215px;
+.upload__photo__title {
+  @include font-property(24px, bold, normal, null);
+  padding-bottom: 24px;
+  letter-spacing: 2px;
+  text-align: left;
+  color: $shadow-grey;
+  @extend %shared___padding__styles;
 }
 
-.bottomContainer {
-  position: absolute;
-  width: 100%;
-  margin-left: 40px;
+.upload__photo__text {
+  @include font-property(12px, 300, normal, normal);
+  margin-top: 2px;
+  color: $shadow-grey;
+  width: 264px;
+  letter-spacing: 1px;
+  @extend %shared___padding__styles;
 }
 
-.nameInputContainer {
+.upload__photo__input {
+  @include flex-property(flex, row, null, baseline);
   border: 2px solid rgba(56, 63, 70, 0.25);
   @include border(null, null, none, none);
-  display: flex;
-  flex-direction: row;
-  align-items: baseline;
   width: 100%;
-  margin-top: 22px;
 }
 
-.nameInput {
+.upload__input__name {
   @include margin(13px, 5px, null, null);
   @include size(32px, 303px);
   color: $shadow-grey;
@@ -39,47 +42,30 @@
   font-style: italic;
   letter-spacing: 1px;
   outline: none;
+  padding-left: 30px;
 }
 
-.numberInfo {
+.upload__photo__number {
   color: $salomon-color;
   font-size: 24px;
   font-weight: bold;
-  padding-right: 30px;
+  padding-left: 30px;
 }
 
-.infoContainer {
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
+.upload__photo__content {
+  position: relative;
+  height: 215px;
+  @extend %shared___padding__styles;
+  padding-bottom: 32px;
+}
+
+.upload__photo__bottom__container {
+  position: absolute;
+  width: 100%;
+  text-align: center;
+}
+
+.upload__photo__info {
+  @include flex-property(flex, row, space-between, null);
   margin-top: 13px;
-}
-
-.textInfo {
-  @include font-property(18px, 300, normal, normal);
-  margin-top: 2px;
-  color: $shadow-grey;
-  width: 264px;
-  letter-spacing: 1px;
-  padding-right: 19px;
-}
-
-.uploadPhotoTitle {
-  @include font-property(24px, bold, normal, null);
-  padding-bottom: 24px;
-  letter-spacing: 2px;
-  text-align: left;
-  color: $shadow-grey;
-}
-
-.show {
-  display: block;
-}
-
-.hide {
-  display: none;
-}
-
-.hidden {
-  visibility: hidden;
 }

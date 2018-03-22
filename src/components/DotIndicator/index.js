@@ -3,10 +3,10 @@ import { PropTypes } from "prop-types";
 import "./styles.css";
 
 const DotIndicator = props => (
-  <div className="dot-indicator-container">
-    <div className={props.isActiveScreen === "first" ? "dot-indicator-on" : "dot-indicator-off"} />
-    <div className={props.isActiveScreen === "second" ? "dot-indicator-on" : "dot-indicator-off"} />
-    <div className={props.isActiveScreen === "third" ? "dot-indicator-on" : "dot-indicator-off"} />
+  <div className="dotIndicator">
+    <div className={props.isActiveScreen === "first" ? "dot__indicator--on" : "dot__indicator--off"} />
+    <div className={props.isActiveScreen === "second" ? "dot__indicator--on" : "dot__indicator--off"} />
+    <div className={props.isActiveScreen === "third" ? "dot__indicator--on" : "dot__indicator--off"} />
   </div>
 );
 

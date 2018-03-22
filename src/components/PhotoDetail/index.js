@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Button } from "components/Button";
-import shareIcon from "assets/share_icon.png";
-import downloadIcon from "assets/download_icon.png";
+import shareIcon from "assets/share_icon.svg";
+import downloadIcon from "assets/download_icon.svg";
 import "./styles.css";
 
 export default class PhotoDetail extends Component {
@@ -10,8 +10,6 @@ export default class PhotoDetail extends Component {
     console.log("PhotoDetail");
     this.props.goBack();
   };
-
-
   render() {
     const { matchedPath } = this.props;
     return (

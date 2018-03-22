@@ -1,7 +1,8 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import NextIcon from "assets/next_icon.png";
-import BackIcon from "assets/back_icon.png";
+import NextIcon from "assets/next_icon.svg";
+import BackIcon from "assets/back_icon.svg";
+import Image from "components/Image";
 import "./styles.css";
 
 const Button = props => {
@@ -9,21 +10,21 @@ const Button = props => {
   let btnBack = null;
   if (props.next) {
     btnNext = (
-      <span className="styledNextIcon">
-        <img src={NextIcon} alt="next_icon" />
+      <span className="button__next">
+        <Image src={NextIcon} />
       </span>
     );
   } else if (props.back) {
     btnBack = (
-      <span className="styledBackIcon">
-        <img src={BackIcon} alt="back_icon" />
+      <span className="button__back">
+        <Image src={BackIcon} alt="back_icon" />
       </span>
     );
   }
   return (
     <button onClick={props.onClick} className="button">
       {btnBack}
-      <span className="buttonText">{props.children}</span>
+      <span className="button__text">{props.children}</span>
       {btnNext}
     </button>
   );

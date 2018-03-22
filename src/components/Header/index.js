@@ -1,19 +1,20 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import logo from "assets/fr_logo.png";
-import womanHead from "assets/woman_head.png";
+import Image from "components/Image";
+import faceLogo from "assets/face_logo.svg";
+import womanHead from "assets/woman_head.svg";
 import "./styles.css";
 
 const Header = () => (
   <header className="header">
-    <div className="ml-logo">
-      <img src={logo} width={63} height={44} alt="logo" />
-      <span className="ml-text">machine learning system</span>
+    <div className="header__logo">
+      <Image src={faceLogo} />
+      <span className="header__logo__text">machine learning system</span>
     </div>
     <div>
       <ul>
         <li>
-          <Link to="#Help">Help</Link> <div className="splitter" />
+          <Link to="#Help">Help</Link>
         </li>
         <li>
           <Link to="#aboutUs">About Us</Link>
@@ -22,8 +23,8 @@ const Header = () => (
           <Link to="#goPremium">Go Premium ! </Link>
         </li>
       </ul>
-      <div className="woman-head-picture">
-        <img src={womanHead} alt="woman_head" />
+      <div className="header__woman">
+        <Image src={womanHead} />
       </div>
     </div>
   </header>

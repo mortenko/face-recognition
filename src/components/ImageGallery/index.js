@@ -1,7 +1,7 @@
 // TODO implement FLOW
 import React, { Component, Fragment } from "react";
-import downloadIcon from "assets/download_icon.png";
-import shareIcon from "assets/share_icon.png";
+import downloadIcon from "assets/download_icon.svg";
+import shareIcon from "assets/share_icon.svg";
 import Image from "components/Image";
 import PhotoDetail from "components/PhotoDetail";
 import "./styles.css";
@@ -24,62 +24,52 @@ export default class ImageGallery extends Component {
       zipData: { originalFileName }
     } = this.props;
     return (
-      <div className="gallery-container">
-        {matchedPath !== "" ? (
-          <PhotoDetail goBack={this.goBack} matchedPath={matchedPath} />
-        ) : (
-          <Fragment>
-            <div className="gallery-head">
-              <div className="gallery-icon-group">
-                <div className="gallery-icon-circle">
-                  <img
-                    src={shareIcon}
-                    width={15}
-                    height={16}
-                    alt="share_icon"
-                  />
-                </div>
-                <div className="gallery-icon-circle">
-                  <img
-                    src={downloadIcon}
-                    width={15}
-                    height={16}
-                    alt="download_icon"
-                  />
-                </div>
+      <div className="gallery">
+        <Fragment>
+          <div className="gallery__head">
+            <div className="icon__group">
+              <div className="icon__group__circle">
+                <Image src={shareIcon} width={15} height={16} />
               </div>
-              <div className="gallery-container-text">
-                We found these photos of
-                <span className="username-text"> {userName} </span> in
-                &nbsp;&nbsp;
-                <span className="originalfilename-text">
-                  {originalFileName}{" "}
-                </span>
+              <div className="icon__group__circle">
+                <Image src={downloadIcon} width={15} height={16} />
               </div>
             </div>
-            <div className="gallery-content">
-              {photos.length === 0 ? (
-                <h1 className="spinner">LOADING MATCHED PHOTOS...</h1>
-              ) : (
-                photos.map(srcPath => {
-                  const relativePath = srcPath.split("public/").pop();
-                  return (
-                    <div
-                      className="gallery-photo"
-                      onClick={() => this.handleClickedPhoto(relativePath)}
-                    >
-                      <Image
-                        key={relativePath}
-                        src={relativePath}
-                        handleRemoveUploadedFile={this.handleRemoveUploadedFile}
-                      />
-                    </div>
-                  );
-                })
-              )}
+            <div className="gallery__head__text">
+              We found these photos of
+              <span className="gallery__head__userName">
+                {" "}
+                {userName}{" "}
+              </span>{" "}
+              in &nbsp;&nbsp;
+              <span className="gallery__head__originalFileName">
+                {originalFileName}{" "}
+              </span>
             </div>
-          </Fragment>
-        )}
+          </div>
+          <div className="gallery__content">
+            {photos.length === 0 ? (
+              <h1 className="spinner">LOADING MATCHED PHOTOS...</h1>
+            ) : (
+              photos.map(srcPath => {
+                const relativePath = srcPath.split("public/").pop();
+                return (
+                  <div
+                    className="gallery__content__photo"
+                    onClick={() => this.handleClickedPhoto(relativePath)}
+                  >
+                    <Image
+                      key={relativePath}
+                      src={relativePath}
+                      handleRemoveUploadedFile={this.handleRemoveUploadedFile}
+                      remove
+                    />
+                  </div>
+                );
+              })
+            )}
+          </div>
+        </Fragment>
       </div>
     );
   }

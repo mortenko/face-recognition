@@ -1,10 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import UploadImage from "components/UploadImage";
+import Image from "components/Image";
 import UploadZip from "components/UploadZip";
 import ImageGallery from "components/ImageGallery";
 import DotIndicator from "components/DotIndicator";
-import arrowBack from "assets/back_icon.png";
+import arrowBack from "assets/back_icon.svg";
 import pathParse from "path-parse";
 import "./styles.css";
 
@@ -140,7 +141,6 @@ class Home extends Component {
         archivePath: ""
       };
     }
-    console.count("calling setState");
     this.setState({
       sharedData: {
         ...sharedData,
@@ -153,7 +153,6 @@ class Home extends Component {
   };
 
   onHandleUserName = event => {
-    console.count("calling setState");
     this.setState({
       sharedData: {
         ...this.state.sharedData,
@@ -170,7 +169,6 @@ class Home extends Component {
     } else {
       sharedData = { ...sharedData, isSuccessfullUploaded: true };
     }
-    console.count("calling setState");
     this.setState(
       {
         sharedData,
@@ -198,7 +196,7 @@ class Home extends Component {
     this.setState({
       matchedPathFiles: {
         ...this.state.matchedPathFiles,
-        matchedPath: "",
+        matchedPath: ""
       }
     });
   };
@@ -216,24 +214,20 @@ class Home extends Component {
     return (
       <div
         className={
-          isActiveScreen !== "third"
-            ? "card-popup-container"
-            : "card-popup-gallery"
+          isActiveScreen !== "third" ? "card__popup" : "card__popup__gallery"
         }
       >
-        {matchedPath === "" && (
-          <div className="card-header">
-            {isActiveScreen !== "first" && (
-              <div
-                className="card-back-icon"
-                onClick={() => this.handleBackButtonClick(isActiveScreen)}
-              >
-                <img src={arrowBack} alt="arrow_back" />
-              </div>
-            )}
-            <DotIndicator isActiveScreen={isActiveScreen} />
-          </div>
-        )}
+        <div className="card__popup__header">
+          {isActiveScreen !== "first" && (
+            <div
+              className="card__popup__back__icon"
+              onClick={() => this.handleBackButtonClick(isActiveScreen)}
+            >
+              <Image src={arrowBack} />
+            </div>
+          )}
+          <DotIndicator isActiveScreen={isActiveScreen} />
+        </div>
         {isActiveScreen === "first" && (
           <UploadImage
             sharedData={sharedData}

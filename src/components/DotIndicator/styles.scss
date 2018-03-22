@@ -1,24 +1,26 @@
 @import "../../styles/mixins";
 
-$dot-indicator-on: #fd7163;
-$dot-indicator-off: #9b9b9b;
+$dot__indicator--on: #fd7163;
+$dot__indicator--off: #9b9b9b;
 
-.dot-indicator-container {
+.dotIndicator {
   display: flex;
   justify-content: center;
   flex-flow: row;
 }
 
-.dot-indicator {
+%dotIndicator__shared {
   @include size(7px,7px);
   border-radius: 5px;
   margin-right: 10px;
 }
-.dot-indicator-on {
- @extend .dot-indicator;
-  background-color: $dot-indicator-on;
+
+.dot__indicator--on {
+ @extend %dotIndicator__shared;
+  background-color: $dot__indicator--on;
 }
-.dot-indicator-off {
- @extend .dot-indicator;
-  background-color: $dot-indicator-off;
+
+.dot__indicator--off {
+ @extend %dotIndicator__shared;
+  background-color: $dot__indicator--off;
 }

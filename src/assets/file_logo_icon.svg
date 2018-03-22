@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="92" height="102" viewBox="0 0 92 102">
+    <defs>
+        <rect id="a" width="62" height="30" y="46" rx="3"/>
+    </defs>
+    <g fill="none" fill-rule="evenodd" opacity=".3">
+        <path stroke="#383F46" stroke-linecap="round" stroke-width="2" d="M64.5 1.5l26 25.5"/>
+        <path stroke="#383F46" stroke-width="2" d="M27 1a9 9 0 0 0-9 9v82a9 9 0 0 0 9 9h55a9 9 0 0 0 9-9V28a1 1 0 0 0-1-1H76c-6.075 0-11-4.925-11-11V2a1 1 0 0 0-1-1H27z"/>
+        <g>
+            <use fill="#383F46" xlink:href="#a"/>
+            <rect width="58" height="26" x="2" y="48" stroke="#383F46" stroke-width="4" rx="3"/>
+        </g>
+        <text fill="#FFF" font-family="Roboto-Bold, Roboto" font-size="24" font-weight="bold" letter-spacing="2">
+            <tspan x="12.632" y="69">ZIP</tspan>
+        </text>
+    </g>
+</svg>

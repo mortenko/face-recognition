@@ -1,10 +1,13 @@
-.uploadZipContainer {
-  height: 389px;
-  margin-top: 50px;
-  padding-left: 30px;
-  padding-right: 19px; }
+.upload__zip__title, .upload__zip__text, .upload__zip__user__name {
+  padding-left: 31px;
+  padding-right: 27px; }
 
-.uploadZipTitle {
+.upload__zip {
+  position: relative;
+  height: 389px;
+  margin-top: 50px; }
+
+.upload__zip__title {
   font-size: 24px;
   font-weight: bold;
   font-style: normal;
@@ -12,46 +15,17 @@
   text-align: left;
   color: #4a4a4a; }
 
-.fileZipImageContainer {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 284px;
-  height: 250px;
-  opacity: 0.3;
-  border-radius: 10px;
-  border: 1px dashed #383f46;
-  margin-top: 80px;
-  margin-bottom: 33px; }
-
-.fileName {
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1.2px;
-  text-align: center;
-  color: #383f46;
-  margin-top: 30px;
-  margin-bottom: 23px; }
-
-.textInfo {
-  width: 264px;
+.upload__zip__text {
   font-size: 12px;
   font-weight: 300;
   font-style: normal;
   font-stretch: normal;
+  width: 264px;
   line-height: normal;
   letter-spacing: 1px;
-  color: #4a4a4a;
-  padding-right: 19px; }
+  color: #4a4a4a; }
 
-.bottomContainer {
-  position: absolute;
-  width: 100%;
-  margin-left: 40px; }
-
-.searchUserName {
+.upload__zip__user__name {
   font-size: 14px;
   font-weight: bold;
   font-style: normal;
@@ -61,15 +35,43 @@
   text-align: left;
   color: #383f46; }
 
-.styledCancelIcon {
+.upload__zip__file {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: center;
+  height: 250px;
+  width: 250px;
+  margin-top: 60px;
+  margin-bottom: 33px;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+  opacity: 0.3;
+  border-radius: 10px;
+  border: 1px dashed #383f46; }
+
+.upload__zip__file--visible {
+  visibility: visible; }
+
+.upload__zip__file--hidden {
+  visibility: hidden; }
+
+.cancel__icon {
   position: absolute;
-  right: -8px;
   top: -12px;
+  right: -8px;
   cursor: pointer;
   z-index: 1; }
 
-.visible {
-  visibility: visible; }
+.file__name {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  color: #383f46;
+  margin-top: 15px; }
 
-.hidden {
-  visibility: hidden; }
+.upload__zip__bottom__container {
+  position: absolute;
+  width: 100%;
+  text-align: center; }

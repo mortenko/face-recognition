@@ -1,13 +1,14 @@
 import React from "react";
 import { PropTypes } from "prop-types";
-import plusIcon from "../../assets/plus_icon.png";
+import plusIcon from "assets/plus_icon.svg";
+import Image from "components/Image";
 import "./styles.css";
 
 const UploadButton = props => (
-  <label htmlFor="file" className="buttonUpload">
-    <span className="styledPlusIcon">
-      <img src={plusIcon} width={17} height={15} alt="plus_icon" />
-    </span>
+  <label htmlFor="file" className="button__upload">
+    <div className="button__plus">
+      <Image src={plusIcon} width={17} height={15} />
+    </div>
     <input
       id="file"
       type="file"
@@ -16,7 +17,7 @@ const UploadButton = props => (
       accept={props.accept}
       onChange={props.onChange}
     />
-    <span className="buttonText">{props.children}</span>
+    <span className="button__text">{props.children}</span>
   </label>
 );
 UploadButton.propTypes = {
@@ -27,5 +28,3 @@ UploadButton.propTypes = {
 };
 
 export default UploadButton;
-
-

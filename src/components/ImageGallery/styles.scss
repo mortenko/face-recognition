@@ -1,18 +1,26 @@
 @import "../../styles/colors";
 @import "../../styles/mixins";
 
-.gallery-container {
+%gallery__text__shared {
+  @include font-property(24px, bold, normal, normal);
+
+  letter-spacing: 2px;
+  color: $shadow-grey;
+}
+
+.gallery__image {
   position: relative;
   width: 100%;
 }
 
-.gallery-head {
+.gallery__head {
+  position: relative;
   width: 100%;
   height: 80px;
   border-bottom: 1px solid rgba(56, 63, 70, 0.25);
 }
 
-.gallery-icon-group {
+.icon__group {
   display: flex;
   justify-content: space-between;
   width: 103px;
@@ -20,20 +28,18 @@
   right: 30px;
 }
 
-.gallery-icon-circle {
+.icon__group__circle {
   @include size(44px, 44px);
-
   border-radius: 23px;
   background-color: $salomon-color;
   cursor: pointer;
-
   img {
     padding-left: 14px;
     padding-top: 14px;
   }
 }
 
-.gallery-container-text {
+.gallery__head__text {
   position: absolute;
   top: 25px;
   left: 69px;
@@ -41,30 +47,22 @@
   @include font-property(12px, 300, normal, normal);
 }
 
-.gallery-text {
-  @include font-property(24px, bold, normal, normal);
-
-  letter-spacing: 2px;
-  color: $shadow-grey;
+.gallery__head__userName {
+  @extend %gallery__text__shared;
 }
 
-.username-text{
-  @extend .gallery-text;
+.gallery__head__originalFileName {
+  @extend %gallery__text__shared;
 }
 
-.originalfilename-text {
-  @extend .gallery-text;
+.gallery__content {
+  @include flex-property(flex, row wrap, space-between, null);
+  @include padding(null, 28px, 28px, 28px);
 }
 
-.gallery-content {
-  display: flex;
-  flex-flow: row wrap;
-  justify-content: space-between;
-
-  @include padding(null,28px,28px,28px);
-}
-
-.gallery-photo {
+.gallery__content__photo {
+  margin-top: 20px;
+  position: relative;
   cursor: pointer;
 }
 

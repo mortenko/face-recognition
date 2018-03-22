@@ -41,32 +41,35 @@ export default class UploadImage extends Component {
       imageData: { imagePath }
     } = this.props;
     return (
-      <div className="uploadPhotoContainer">
-        <div className="uploadPhotoTitle">Upload reference face photo</div>
-        <p className="textInfo">
+      <div className="upload__photo">
+        <div className="upload__photo__title">Upload reference face photo</div>
+        <p className="upload__photo__text">
           Tell us who’s photos would you like to find in fotoreport
         </p>
-        <div className="nameInputContainer">
-          <span className="numberInfo"> 1 </span>
+        <div className="upload__photo__input">
+          <span className="upload__photo__number"> 1 </span>
           <input
             id="name"
-            className="nameInput"
+            className="upload__input__name"
             value={userName}
             onChange={event => this.onHandleUserName(event)}
             type="text"
             placeholder="Specify person's name"
           />
         </div>
-        <div className="infoContainer">
-          <span className="numberInfo"> 2 </span>
-          <p className="textInfo">
+        <div className="upload__photo__info">
+          <span className="upload__photo__number"> 2 </span>
+          <p className="upload__photo__text">
             Please select a photo with the single face on it. Avoid photos where
             face is covered with scarf or sunglasses.
           </p>
         </div>
-        <div className="photoContainer">
+        <div className="upload__photo__content">
           {isSuccessfullUploaded && (
             <Image
+              width={284}
+              height={215}
+              remove
               src={imagePath}
               handleRemoveUploadedFile={() =>
                 this.handleRemoveUploadedImage(imagePath)
@@ -74,7 +77,7 @@ export default class UploadImage extends Component {
             />
           )}
         </div>
-        <div className="bottomContainer">
+        <div className="upload__photo__bottom__container">
           {isSuccessfullUploaded === false ? (
             <UploadButton
               inputValue={inputValue}

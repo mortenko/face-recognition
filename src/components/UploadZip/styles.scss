@@ -1,80 +1,72 @@
 @import "../../styles/_mixins";
 @import "../../styles/colors";
+@import "../../styles/_shared";
 
-.uploadZipContainer {
+.upload__zip {
+  position: relative;
   height: 389px;
   margin-top: 50px;
-  padding-left: 30px;
-  padding-right: 19px;
 }
 
-.uploadZipTitle {
+.upload__zip__title {
   @include font-property(24px, bold, normal, null);
   letter-spacing: 2px;
   text-align: left;
   color: $shadow-grey;
+  @extend %shared___padding__styles;
 }
 
-.fileZipImageContainer {
-  display: flex;
-  position: relative;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  width: 284px;
-  height: 250px;
-  opacity: 0.3;
-  border-radius: 10px;
-  border: 1px dashed #383f46;
-  margin-top: 80px;
-  margin-bottom: 33px;
-}
-
-.fileName {
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1.2px;
-  text-align: center;
-  color: $background-grey;
-  margin-top: 30px;
-  margin-bottom: 23px;
-}
-
-.textInfo {
-  width: 264px;
+.upload__zip__text {
   @include font-property(12px, 300, normal, normal);
+  @extend %shared___padding__styles;
+  width: 264px;
   line-height: normal;
   letter-spacing: 1px;
   color: $shadow-grey;
-  padding-right: 19px;
 }
 
-.bottomContainer {
-  position: absolute;
-  width: 100%;
-  margin-left: 40px;
-}
-
-.searchUserName {
+.upload__zip__user__name {
   @include font-property(14px, bold, normal, normal);
+  @extend %shared___padding__styles;
   line-height: normal;
   letter-spacing: 1.2px;
   text-align: left;
   color: $background-grey;
 }
 
-.styledCancelIcon {
-  position: absolute;
-  right: -8px;
-  top: -12px;
+.upload__zip__file {
+  @include  flex-property(flex, column, center, center);
+  @include size(250px, 250px);
+  @include margin(60px,33px, auto, auto);
+  position: relative;
+  opacity: 0.3;
+  border-radius: 10px;
+  border: 1px dashed $background-grey;
+}
+
+.upload__zip__file--visible {
+  visibility: visible;
+}
+
+.upload__zip__file--hidden {
+  visibility: hidden;
+}
+.cancel__icon {
+  @include position(absolute,-12px,null,null,-8px);
   cursor: pointer;
   z-index: 1;
 }
 
-.visible {
-  visibility: visible;
+.file__name {
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: 1.2px;
+  color: $background-grey;
+  margin-top: 15px;
 }
 
-.hidden {
-  visibility: hidden;
+.upload__zip__bottom__container {
+  position: absolute;
+  width: 100%;
+  text-align: center;
 }

@@ -18,12 +18,7 @@
   border-left: $border-left;
   border-right: $border-right;
 }
-@mixin font-property(
-  $font-size,
-  $font-weight,
-  $font-style,
-  $font-stretch
-) {
+@mixin font-property($font-size, $font-weight, $font-style, $font-stretch) {
   font: {
     size: $font-size;
     weight: $font-weight;
@@ -32,7 +27,21 @@
   }
 }
 
-@mixin size($height,$width) {
+@mixin size($height, $width) {
   height: $height;
   width: $width;
+}
+@mixin flex-property($display, $flex-flow, $justify-content, $align-items) {
+  display: $display;
+  flex-flow: $flex-flow;
+  justify-content: $justify-content;
+  align-items: $align-items;
+}
+
+@mixin position($position, $top, $bottom, $left, $right) {
+  position: $position;
+  top: $top;
+  bottom: $bottom;
+  left: $left;
+  right: $right;
 }

@@ -1,16 +1,16 @@
-.dot-indicator-container {
+.dotIndicator {
   display: flex;
   justify-content: center;
   flex-flow: row; }
 
-.dot-indicator, .dot-indicator-on, .dot-indicator-off {
+.dot__indicator--on, .dot__indicator--off {
   height: 7px;
   width: 7px;
   border-radius: 5px;
   margin-right: 10px; }
 
-.dot-indicator-on {
+.dot__indicator--on {
   background-color: #fd7163; }
 
-.dot-indicator-off {
+.dot__indicator--off {
   background-color: #9b9b9b; }

@@ -3,9 +3,10 @@
 import React, { Component } from "react";
 import classnames from "classnames";
 import { PropTypes } from "prop-types";
-import fileLogo from "assets/fileLogo.png";
 import { Button, UploadButton } from "components/Button";
-import CancelIcon from "assets/cancel_icon.png";
+import Image from "components/Image";
+import cancelIcon from "assets/cancel_icon.svg";
+import fileLogo from "assets/file_logo_icon.svg";
 import "./styles.css";
 
 // Export this for unit testing more easily
@@ -22,7 +23,7 @@ export default class UploadZip extends Component {
     handleRemoveUploadedImage: PropTypes.func.isRequired
   };
 
-  onNextButtonClick = (nextScreen) => {
+  onNextButtonClick = nextScreen => {
     this.props.handleNextButtonClick(nextScreen);
   };
   handleUploadFile = uploadedZip => {
@@ -39,33 +40,33 @@ export default class UploadZip extends Component {
       zipData: { originalFileName, archivePath }
     } = this.props;
     return (
-      <div className="uploadZipContainer">
-        <h3 className="uploadZipTitle">Upload photo library</h3>
-        <p className="textInfo">
+      <div className="upload__zip">
+        <h3 className="upload__zip__title">Upload photo library</h3>
+        <p className="upload__zip__text">
           Upload .zip file containing bunch of photos in which you wish to find
         </p>
         <br />
-        <span className="searchUserName">{userName}</span>
+        <span className="upload__zip__user__name">{userName}</span>
         <br />
         <hr />
         <div
           className={classnames(
-            "fileZipImageContainer",
-            isSuccessfullUploaded ? "visible" : "hidden"
+            "upload__zip__file",
+            isSuccessfullUploaded
+              ? "upload__zip__file--visible"
+              : "upload__zip__file--hidden"
           )}
         >
           <div
             onClick={() => this.handleRemoveUploadedZip(archivePath)}
-            className="styledCancelIcon"
+            className="cancel__icon"
           >
-            <img src={CancelIcon} alt="cancel_icon" />
+            <Image src={cancelIcon} />
           </div>
-          <div>
-            <img className="fileLogo" src={fileLogo} alt="file_logo" />
-          </div>
-          <span className="fileName">{originalFileName}</span>
+          <Image className="file__logo" src={fileLogo} />
+          <span className="file__name">{originalFileName}</span>
         </div>
-        <div className="bottomContainer">
+        <div className="upload__zip__bottom__container">
           {isSuccessfullUploaded === false ? (
             <UploadButton
               accept=".zip"
