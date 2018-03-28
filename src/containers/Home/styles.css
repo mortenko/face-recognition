@@ -14,7 +14,10 @@
   padding-left: 28px;
   padding-right: 28px;
   height: auto;
-  width: 1153px; }
+  width: 1153px;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto; }
 
 .card__popup__header {
   position: relative; }

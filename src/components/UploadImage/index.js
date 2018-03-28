@@ -2,12 +2,16 @@
 
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
+import { action } from "mobx";
+import { observer, inject } from "mobx-react";
 import { UploadButton, Button } from "components/Button";
 import Image from "components/Image";
 import "./styles.css";
 
-
-// Export this for unit testing more easily
+@inject(stores => ({
+  sharedStore: stores.rootStore.sharedStore
+}))
+@observer
 export default class UploadImage extends Component {
   static propTypes = {
     sharedData: PropTypes.shape({
@@ -21,25 +25,33 @@ export default class UploadImage extends Component {
     onHandleUserName: PropTypes.func.isRequired,
     handleRemoveUploadedImage: PropTypes.func.isRequired
   };
-  onHandleUserName = event => {
-    this.props.onHandleUserName(event);
-  };
+  // onHandleUserName = event => {
+  //   this.props.onHandleUserName(event);
+  // };
 
-  onNextButtonClick(nextScreen) {
-    this.props.handleNextButtonClick(nextScreen);
-  }
-  handleUploadFile = uploadedFile => {
-    this.props.handleUploadFile(uploadedFile, "image");
-  };
+  // onNextButtonClick(nextScreen) {
+  //   this.props.handleNextButtonClick(nextScreen);
+  // }
+  // handleUploadFile = uploadedFile => {
+  //   this.props.handleUploadFile(uploadedFile, "image");
+  // };
   handleRemoveUploadedImage(imagePath) {
     this.props.handleRemoveUploadedImage(imagePath);
   }
 
   render() {
+    console.log(this.props);
     const {
-      sharedData: { userName, isSuccessfullUploaded, inputValue },
-      imageData: { imagePath }
-    } = this.props;
+      userName,
+      isSuccessfullUploaded,
+      inputValue,
+      onHandleUserName,
+      handleUploadFile,
+      imageData: { imagePath },
+      handleNextButtonClick
+    } = this.props.sharedStore;
+    // const { userName, isSuccessfullUploaded, inputValue } = this.props;
+    // const { imageData: { imagePath } } = this.props;
     return (
       <div className="upload__photo">
         <div className="upload__photo__title">Upload reference face photo</div>
@@ -52,7 +64,7 @@ export default class UploadImage extends Component {
             id="name"
             className="upload__input__name"
             value={userName}
-            onChange={event => this.onHandleUserName(event)}
+            onChange={event => onHandleUserName(event)}
             type="text"
             placeholder="Specify person's name"
           />
@@ -81,13 +93,13 @@ export default class UploadImage extends Component {
           {isSuccessfullUploaded === false ? (
             <UploadButton
               inputValue={inputValue}
-              onChange={this.handleUploadFile}
+              onChange={uploadedFile => handleUploadFile(uploadedFile, "image")}
               accept=".jpg,.png"
             >
               Browser
             </UploadButton>
           ) : (
-            <Button onClick={() => this.onNextButtonClick("second")} next>
+            <Button onClick={() => handleNextButtonClick("second")} next>
               Next
             </Button>
           )}

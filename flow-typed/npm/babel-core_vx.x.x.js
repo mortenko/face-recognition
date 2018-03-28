@@ -172,7 +172,7 @@ declare module 'babel-core/lib/helpers/resolve.js' {
   declare module.exports: $Exports<'babel-core/lib/helpers/resolve'>;
 }
 declare module 'babel-core/lib/store.js' {
-  declare module.exports: $Exports<'babel-core/lib/store'>;
+  declare module.exports: $Exports<'babel-core/lib/mobx-store'>;
 }
 declare module 'babel-core/lib/tools/build-external-helpers.js' {
   declare module.exports: $Exports<'babel-core/lib/tools/build-external-helpers'>;

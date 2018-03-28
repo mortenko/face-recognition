@@ -14,6 +14,8 @@ app.use(
   })
 );
 app.use(bodyParser.json());
+app.use("/", express.static(`${__dirname}/build`));
+app.use("/", express.static(`${__dirname}/public`));
 
 const wrapWithPromise = wrappedFunction => (...args) =>
   new Promise((resolve, reject) => {

@@ -5,7 +5,6 @@ import "./styles.css";
 
 const Image = props => {
   const { handleRemoveUploadedFile, src, remove, height, width } = props;
-  console.log(props);
   return (
     <div className="image">
       {remove && (

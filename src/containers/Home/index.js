@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import UploadImage from "components/UploadImage";
 import Image from "components/Image";
+import { observer, inject } from "mobx-react";
 import UploadZip from "components/UploadZip";
 import ImageGallery from "components/ImageGallery";
 import DotIndicator from "components/DotIndicator";
@@ -9,34 +10,38 @@ import arrowBack from "assets/back_icon.svg";
 import pathParse from "path-parse";
 import "./styles.css";
 
+@inject(stores => ({
+  isActiveScreen: stores.rootStore.sharedStore.isActiveScreen
+}))
+@observer
 class Home extends Component {
   constructor() {
     super();
-    this.state = {
-      isActiveScreen: "first",
-      sharedData: {
-        userName: "",
-        isSuccessfullUploaded: false,
-        inputValue: "",
-        rootUniqueDirName: ""
-      },
-      imageData: {
-        imagePath: ""
-      },
-      zipData: {
-        archivePath: "",
-        originalFileName: ""
-      },
-      matchedPathFiles: {
-        marked_photos: [],
-        photos: [],
-        matchedPath: ""
-      }
-    };
     this.handleUnZipFile = this.handleUnZipFile.bind(this);
     this.handleUploadFile = this.handleUploadFile.bind(this);
   }
 
+  state = {
+    isActiveScreen: "first",
+    sharedData: {
+      userName: "",
+      isSuccessfullUploaded: false,
+      inputValue: "",
+      rootUniqueDirName: ""
+    },
+    imageData: {
+      imagePath: ""
+    },
+    zipData: {
+      archivePath: "",
+      originalFileName: ""
+    },
+    matchedPathFiles: {
+      marked_photos: [],
+      photos: [],
+      matchedPath: ""
+    }
+  };
   async handleUnZipFile() {
     const {
       sharedData: { userName, rootUniqueDirName },
@@ -59,7 +64,6 @@ class Home extends Component {
           photos: response.data.photos
         }
       });
-      console.count("calling setState");
     } catch (error) {
       throw new Error(error);
     }
@@ -151,16 +155,6 @@ class Home extends Component {
       imageData
     });
   };
-
-  onHandleUserName = event => {
-    this.setState({
-      sharedData: {
-        ...this.state.sharedData,
-        userName: event.target.value
-      }
-    });
-  };
-
   handleNextButtonClick = step => {
     const { imageData: { imagePath }, zipData: { archivePath } } = this.state;
     let { sharedData } = this.state;
@@ -202,15 +196,15 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.state);
     const {
       matchedPathFiles,
       matchedPathFiles: { matchedPath },
-      isActiveScreen,
       imageData,
       sharedData,
       zipData
     } = this.state;
+    console.log(this.props);
+    const { isActiveScreen } = this.props;
     return (
       <div
         className={
@@ -230,11 +224,10 @@ class Home extends Component {
         </div>
         {isActiveScreen === "first" && (
           <UploadImage
-            sharedData={sharedData}
-            imageData={imageData}
-            onHandleUserName={this.onHandleUserName}
-            handleUploadFile={this.handleUploadFile}
-            handleNextButtonClick={this.handleNextButtonClick}
+            // sharedData={sharedData}
+            // imageData={imageData}
+          //  handleUploadFile={this.handleUploadFile}
+          //  handleNextButtonClick={this.handleNextButtonClick}
             handleRemoveUploadedImage={this.handleRemoveUploadedImage}
           />
         )}
@@ -260,4 +253,5 @@ class Home extends Component {
     );
   }
 }
+
 export default Home;
