@@ -1,42 +1,42 @@
 import React, { Component } from "react";
 import axios from "axios";
 import UploadImage from "components/UploadImage";
-import Image from "components/Image";
+import { BackButton } from "components/Button";
 import UploadZip from "components/UploadZip";
 import ImageGallery from "components/ImageGallery";
 import DotIndicator from "components/DotIndicator";
-import arrowBack from "assets/back_icon.svg";
 import pathParse from "path-parse";
 import "./styles.css";
 
 class Home extends Component {
   constructor() {
     super();
-    this.state = {
-      isActiveScreen: "first",
-      sharedData: {
-        userName: "",
-        isSuccessfullUploaded: false,
-        inputValue: "",
-        rootUniqueDirName: ""
-      },
-      imageData: {
-        imagePath: ""
-      },
-      zipData: {
-        archivePath: "",
-        originalFileName: ""
-      },
-      matchedPathFiles: {
-        marked_photos: [],
-        photos: [],
-        matchedPath: ""
-      }
-    };
     this.handleUnZipFile = this.handleUnZipFile.bind(this);
     this.handleUploadFile = this.handleUploadFile.bind(this);
   }
 
+  state = {
+    isActiveScreen: "first",
+    sharedData: {
+      userName: "",
+      isSuccessfullUploaded: false,
+      inputValue: "",
+      rootUniqueDirName: ""
+    },
+    imageData: {
+      imagePath: ""
+    },
+    zipData: {
+      archivePath: "",
+      originalFileName: ""
+    },
+    matchedPathFiles: {
+      marked_photos: [],
+      photos: [],
+      matchedPath: "",
+      photoName: ""
+    }
+  };
   async handleUnZipFile() {
     const {
       sharedData: { userName, rootUniqueDirName },
@@ -59,7 +59,6 @@ class Home extends Component {
           photos: response.data.photos
         }
       });
-      console.count("calling setState");
     } catch (error) {
       throw new Error(error);
     }
@@ -106,7 +105,7 @@ class Home extends Component {
       console.log(error);
     }
   }
-  getMatchedPhotoPath = path => {
+  handleClickedPhoto = (path, photoName) => {
     const { matchedPathFiles: { marked_photos } } = this.state;
     const notMarkedPhotoName = pathParse(path);
     marked_photos.forEach(markedPhotoPath => {
@@ -115,9 +114,18 @@ class Home extends Component {
         this.setState({
           matchedPathFiles: {
             ...this.state.matchedPathFiles,
+            photoName,
             matchedPath: markedPhotoPath.split("public/").pop()
           }
         });
+      }
+    });
+  };
+  onHandleUserName = event => {
+    this.setState({
+      sharedData: {
+        ...this.state.sharedData,
+        userName: event.target.value
       }
     });
   };
@@ -151,16 +159,6 @@ class Home extends Component {
       imageData
     });
   };
-
-  onHandleUserName = event => {
-    this.setState({
-      sharedData: {
-        ...this.state.sharedData,
-        userName: event.target.value
-      }
-    });
-  };
-
   handleNextButtonClick = step => {
     const { imageData: { imagePath }, zipData: { archivePath } } = this.state;
     let { sharedData } = this.state;
@@ -202,14 +200,13 @@ class Home extends Component {
   };
 
   render() {
-    console.log(this.state);
     const {
       matchedPathFiles,
       matchedPathFiles: { matchedPath },
-      isActiveScreen,
       imageData,
       sharedData,
-      zipData
+      zipData,
+      isActiveScreen
     } = this.state;
     return (
       <div
@@ -218,13 +215,11 @@ class Home extends Component {
         }
       >
         <div className="card__popup__header">
-          {isActiveScreen !== "first" && (
-            <div
-              className="card__popup__back__icon"
-              onClick={() => this.handleBackButtonClick(isActiveScreen)}
+          {(isActiveScreen !== "first" && matchedPath === "") && (
+            <BackButton
+              handleBackButtonClick={() => this.handleBackButtonClick(isActiveScreen)}
             >
-              <Image src={arrowBack} />
-            </div>
+            </BackButton>
           )}
           <DotIndicator isActiveScreen={isActiveScreen} />
         </div>
@@ -232,7 +227,7 @@ class Home extends Component {
           <UploadImage
             sharedData={sharedData}
             imageData={imageData}
-            onHandleUserName={this.onHandleUserName}
+            onHandleUserName={event => this.onHandleUserName(event)}
             handleUploadFile={this.handleUploadFile}
             handleNextButtonClick={this.handleNextButtonClick}
             handleRemoveUploadedImage={this.handleRemoveUploadedImage}
@@ -253,11 +248,12 @@ class Home extends Component {
             goBack={this.goBack}
             zipData={zipData}
             matchedPathFiles={matchedPathFiles}
-            getMatchedPhotoPath={this.getMatchedPhotoPath}
+            handleClickedPhoto={this.handleClickedPhoto}
           />
         )}
       </div>
     );
   }
 }
+
 export default Home;

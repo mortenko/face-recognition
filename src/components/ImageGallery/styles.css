@@ -6,6 +6,10 @@
   letter-spacing: 2px;
   color: #4a4a4a; }
 
+.gallery {
+  width: 100%;
+  height: inherit; }
+
 .gallery__image {
   position: relative;
   width: 100%; }

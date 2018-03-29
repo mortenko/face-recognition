@@ -4,8 +4,7 @@ import cancelIcon from "assets/cancel_icon.svg";
 import "./styles.css";
 
 const Image = props => {
-  const { handleRemoveUploadedFile, src, remove, height, width } = props;
-  console.log(props);
+  const { handleRemoveUploadedFile, src, remove, ...rest } = props;
   return (
     <div className="image">
       {remove && (
@@ -13,26 +12,20 @@ const Image = props => {
           <img src={cancelIcon} alt="cancel_icon" />
         </div>
       )}
-      <img
-        height={height}
-        width={width}
-        src={src}
-        alt={src}
-      />
+      <img src={src} alt={src} {...rest} />
     </div>
   );
 };
 
 Image.propTypes = {
-  height: PropTypes.number,
-  handleRemoveUploadedFile: PropTypes.func.isRequired,
+  handleRemoveUploadedFile: PropTypes.func,
   remove: PropTypes.bool,
-  src: PropTypes.string.isRequired,
-  width: PropTypes.number
+  src: PropTypes.string.isRequired
 };
 
 Image.defautProps = {
-  remove: false
+  remove: false,
+  handleRemoveUploadedFile: () => {}
 };
 
 export default Image;

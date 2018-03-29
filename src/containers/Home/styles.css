@@ -14,13 +14,9 @@
   padding-left: 28px;
   padding-right: 28px;
   height: auto;
-  width: 1153px; }
+  width: auto;
+  margin-left: 10%;
+  margin-right: 10%; }
 
 .card__popup__header {
   position: relative; }
-
-.card__popup__back__icon {
-  position: absolute;
-  top: -5px;
-  left: 29px;
-  cursor: pointer; }

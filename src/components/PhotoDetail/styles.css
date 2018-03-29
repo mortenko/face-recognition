@@ -1,32 +1,29 @@
-.photo-container {
-  position: absolute;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto; }
+.photo {
+  width: 100%; }
 
-.photo-header {
+.photo__header {
   display: flex;
   flex-flow: row;
   position: relative;
   width: 100%;
   justify-content: space-between; }
 
-.gallery-icon-group {
+.photo__icon__group {
   display: flex;
   justify-content: space-between;
   width: 103px;
   position: absolute;
   right: 30px; }
 
-.gallery-icon-circle {
+.photo__icon__circle {
   height: 44px;
   width: 44px;
   border-radius: 23px;
   background-color: #fe6e62;
   cursor: pointer; }
-  .gallery-icon-circle img {
+  .photo__icon__circle img {
     padding-left: 14px;
     padding-top: 14px; }
 
-.marked-photo {
+.photo__marked {
   text-align: center; }
