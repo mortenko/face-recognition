@@ -1,4 +1,5 @@
 import Button from "./button";
 import UploadButton from "./uploadButton";
+import BackButton from "./backButton";
 
-export { Button, UploadButton };
+export { Button, BackButton, UploadButton };

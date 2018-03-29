@@ -1,27 +1,26 @@
 import React, { Component } from "react";
 import { Button } from "components/Button";
+import Image from "components/Image";
 import shareIcon from "assets/share_icon.svg";
 import downloadIcon from "assets/download_icon.svg";
 import "./styles.css";
 
 export default class PhotoDetail extends Component {
-
   goBack = () => {
-    console.log("PhotoDetail");
     this.props.goBack();
   };
   render() {
-    const { matchedPath } = this.props;
+    const { matchedPath, userName, photoName } = this.props;
     return (
-      <div className="photo-container">
-        <div className="photo-header">
+      <div className="photo">
+        <div className="photo__header">
           <Button onClick={this.goBack}> Back </Button>
-          <div className="gallery-icon-group">
-            <div className="gallery-icon-circle">
-              <img src={shareIcon} width={15} height={16} alt="share_icon" />
+          <div className="photo__icon__group">
+            <div className="photo__icon__circle">
+              <Image src={shareIcon} width={15} height={16} alt="share_icon" />
             </div>
-            <div className="gallery-icon-circle">
-              <img
+            <div className="photo__icon__circle">
+              <Image
                 src={downloadIcon}
                 width={15}
                 height={16}
@@ -30,9 +29,15 @@ export default class PhotoDetail extends Component {
             </div>
           </div>
         </div>
-       <div className="marked-photo">
-        <img src={matchedPath} width={300} height={300} alt="detail_photo" />
-       </div>
+        <div className="photo__marked">
+          <Image
+            src={matchedPath}
+            width={300}
+            height={300}
+            alt="detail_photo"
+          />
+          <span>{userName} in {photoName}</span>
+        </div>
       </div>
     );
   }

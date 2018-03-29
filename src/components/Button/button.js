@@ -10,13 +10,13 @@ const Button = props => {
   let btnBack = null;
   if (props.next) {
     btnNext = (
-      <span className="button__next">
+      <span className="button--next">
         <Image src={NextIcon} />
       </span>
     );
   } else if (props.back) {
     btnBack = (
-      <span className="button__back">
+      <span className="button--back">
         <Image src={BackIcon} alt="back_icon" />
       </span>
     );

@@ -1,12 +1,11 @@
 import React, { Component } from "react";
 import axios from "axios";
 import UploadImage from "components/UploadImage";
-import Image from "components/Image";
 import { observer, inject } from "mobx-react";
+import { BackButton } from "components/Button";
 import UploadZip from "components/UploadZip";
 import ImageGallery from "components/ImageGallery";
 import DotIndicator from "components/DotIndicator";
-import arrowBack from "assets/back_icon.svg";
 import pathParse from "path-parse";
 import "./styles.css";
 
@@ -39,7 +38,8 @@ class Home extends Component {
     matchedPathFiles: {
       marked_photos: [],
       photos: [],
-      matchedPath: ""
+      matchedPath: "",
+      photoName: ""
     }
   };
   async handleUnZipFile() {
@@ -110,7 +110,7 @@ class Home extends Component {
       console.log(error);
     }
   }
-  getMatchedPhotoPath = path => {
+  handleClickedPhoto = (path, photoName) => {
     const { matchedPathFiles: { marked_photos } } = this.state;
     const notMarkedPhotoName = pathParse(path);
     marked_photos.forEach(markedPhotoPath => {
@@ -119,9 +119,18 @@ class Home extends Component {
         this.setState({
           matchedPathFiles: {
             ...this.state.matchedPathFiles,
+            photoName,
             matchedPath: markedPhotoPath.split("public/").pop()
           }
         });
+      }
+    });
+  };
+  onHandleUserName = event => {
+    this.setState({
+      sharedData: {
+        ...this.state.sharedData,
+        userName: event.target.value
       }
     });
   };
@@ -201,7 +210,8 @@ class Home extends Component {
       matchedPathFiles: { matchedPath },
       imageData,
       sharedData,
-      zipData
+      zipData,
+      isActiveScreen
     } = this.state;
     console.log(this.props);
     const { isActiveScreen } = this.props;
@@ -212,22 +222,27 @@ class Home extends Component {
         }
       >
         <div className="card__popup__header">
-          {isActiveScreen !== "first" && (
-            <div
-              className="card__popup__back__icon"
-              onClick={() => this.handleBackButtonClick(isActiveScreen)}
-            >
-              <Image src={arrowBack} />
-            </div>
-          )}
+          {isActiveScreen !== "first" &&
+            matchedPath === "" && (
+              <BackButton
+                handleBackButtonClick={() =>
+                  this.handleBackButtonClick(isActiveScreen)
+                }
+              />
+            )}
           <DotIndicator isActiveScreen={isActiveScreen} />
         </div>
         {isActiveScreen === "first" && (
           <UploadImage
-            // sharedData={sharedData}
-            // imageData={imageData}
-          //  handleUploadFile={this.handleUploadFile}
-          //  handleNextButtonClick={this.handleNextButtonClick}
+            sharedData={sharedData}
+            imageData={imageData}
+            handleUploadFile={this.handleUploadFile}
+            handleNextButtonClick={this.handleNextButtonClick}
+            //   sharedData={sharedData}
+            //  imageData={imageData}
+            //  onHandleUserName={event => this.onHandleUserName(event)}
+            // handleUploadFile={this.handleUploadFile}
+            // handleNextButtonClick={this.handleNextButtonClick}
             handleRemoveUploadedImage={this.handleRemoveUploadedImage}
           />
         )}
@@ -246,7 +261,7 @@ class Home extends Component {
             goBack={this.goBack}
             zipData={zipData}
             matchedPathFiles={matchedPathFiles}
-            getMatchedPhotoPath={this.getMatchedPhotoPath}
+            handleClickedPhoto={this.handleClickedPhoto}
           />
         )}
       </div>

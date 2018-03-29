@@ -31,19 +31,18 @@ input[type="file"] {
   display: none;
 }
 
-.button__next {
+.button--next {
   position: absolute;
   right: 0;
   padding-right: 15px;
 }
-.button__back {
+.button--back {
   position: absolute;
-  top: 15px;
-  left: 15px;
+  left: 17px;
+  cursor: pointer;
 }
-.button__plus {
+.button--plus {
   position: absolute;
-  left: 0;
-  margin-left: 15px;
-  margin-top: 3px;
+  top: 14px;
+  left: 17px;
 }

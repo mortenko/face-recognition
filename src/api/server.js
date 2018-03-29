@@ -14,8 +14,9 @@ app.use(
   })
 );
 app.use(bodyParser.json());
-app.use("/", express.static(`${__dirname}/build`));
-app.use("/", express.static(`${__dirname}/public`));
+app.use(express.static(`${process.cwd()}/build`));
+app.use(express.static(`${process.cwd()}/public`));
+
 
 const wrapWithPromise = wrappedFunction => (...args) =>
   new Promise((resolve, reject) => {
@@ -97,14 +98,14 @@ app.route("/file/unzip").post((req, res) => {
 
   py.stdout.on("data", data => {
     const convertBufferData = data.toString("utf8");
-    console.log("data", convertBufferData);
+  //  console.log("data", convertBufferData);
     res.status(200).send(convertBufferData);
   });
   py.on("exit", code => {
     console.log(`child process exited with the code ${code}`);
   });
   py.stderr.on("data", error => {
-    console.log(error.toString("utf8"));
+   // console.log(error.toString("utf8"));
     res.status(500).json({ pythonError: error });
   });
   py.stdout.on("end", () => {

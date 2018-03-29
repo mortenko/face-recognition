@@ -6,7 +6,7 @@ import "./styles.css";
 
 const UploadButton = props => (
   <label htmlFor="file" className="button__upload">
-    <div className="button__plus">
+    <div className="button--plus">
       <Image src={plusIcon} width={17} height={15} />
     </div>
     <input

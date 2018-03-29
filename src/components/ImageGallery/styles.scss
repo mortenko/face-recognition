@@ -6,6 +6,10 @@
   letter-spacing: 2px;
   color: $shadow-grey;
 }
+.gallery {
+  width: 100%;
+  height: inherit;
+}
 
 .gallery__image {
   position: relative;
