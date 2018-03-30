@@ -1,0 +1,19 @@
+image: node:8.11.1
+
+pages:
+ cache:
+  paths:
+  - node_modules/
+
+ stage: deploy
+ script:
+ - yarn install
+ - yarn build
+ - rm -rf public
+ - mv build public
+ - yarn live-restart
+ artifacts:
+  paths:
+  - public
+ only:
+ - master

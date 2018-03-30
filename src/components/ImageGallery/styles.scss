@@ -59,14 +59,17 @@
 }
 
 .gallery__content {
-  @include flex-property(flex, row wrap, space-between, null);
+  @include flex-property(flex, row wrap, flex-start, null);
+  width: 100%;
+  padding-left: 30px;
+  padding-right: 30px;
 }
 
 .gallery__photo {
   @include flex-property(flex, column, null, center);
-  @include size(auto, 183px);
+  @include size(auto, 200px);
   margin-top: 20px;
-  margin-right: 16px;
+  margin-right: 20px;
   position: relative;
   cursor: pointer;
   border: solid 1px rgba(56, 63, 70, 0.25);
