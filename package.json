@@ -55,7 +55,7 @@
   },
   "scripts": {
     "start": "NODE_PATH=src/ react-scripts start",
-    "start-live": "forever start .src/api/server.js",
+    "start-live": "forever start ./src/api/server.js",
     "live-stop": "forever stop ./src/api/server.js",
     "live-restart": "forever restart ./src/api/server.js",
     "server": "nodemon ./src/api/server.js",
