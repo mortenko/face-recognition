@@ -22,7 +22,7 @@ pages:
  - master
 
 build_image:
-script:
-- docker build -t maros/face-recognition
-- docker run -p maros/face-recognition
+ script:
+ - docker build -t maros/face-recognition
+ - docker run -p maros/face-recognition
 
