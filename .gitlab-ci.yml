@@ -6,7 +6,6 @@ pages:
   - node_modules/
 
  before_script:
- - docker info
  - yarn global add forever
 
  stage: deploy
@@ -20,9 +19,3 @@ pages:
   - public
  only:
  - master
-
-build_image:
- script:
- - docker build -t maros/face-recognition
- - docker run -p maros/face-recognition
-
