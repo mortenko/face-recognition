@@ -71,7 +71,7 @@ export default class ImageGallery extends Component {
                         key={parseImgPath.name}
                         src={relativePath}
                         height={262}
-                        width={183}
+                        width={200}
                         handleRemoveUploadedFile={this.handleRemoveUploadedFile}
                         remove
                       />

@@ -13,9 +13,9 @@
 .card__popup__gallery {
   @extend .card__popup;
   @include padding(21px,62px,28px,28px);
-  @include size(auto, auto);
-  margin-left: 10%;
-  margin-right: 10%;
+  @include size(auto, 1153px);
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .card__popup__header {
