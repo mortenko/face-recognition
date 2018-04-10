@@ -3,6 +3,7 @@
 import React, { Component } from "react";
 import classnames from "classnames";
 import { PropTypes } from "prop-types";
+import { observer, inject } from "mobx-react";
 import { Button, UploadButton } from "components/Button";
 import Image from "components/Image";
 import cancelIcon from "assets/cancel_icon.svg";
@@ -10,35 +11,40 @@ import fileLogo from "assets/file_logo_icon.svg";
 import "./styles.css";
 
 // Export this for unit testing more easily
+@inject(stores => ({
+  sharedStore: stores.rootStore.sharedStore
+}))
+@observer
 export default class UploadZip extends Component {
   static propTypes = {
-    sharedData: PropTypes.shape({
+    sharedStore: PropTypes.shape({
       isSuccessfullUploaded: PropTypes.bool,
       userName: PropTypes.string,
-      inputValue: PropTypes.string
-    }).isRequired,
-    zipData: PropTypes.objectOf(PropTypes.string).isRequired,
-    handleNextButtonClick: PropTypes.func.isRequired,
-    handleUploadFile: PropTypes.func.isRequired,
-    handleRemoveUploadedImage: PropTypes.func.isRequired
+      inputValue: PropTypes.string,
+      originalFileName: PropTypes.string,
+      goToNextScreen: PropTypes.func.isRequired,
+      handleUploadFile: PropTypes.func.isRequired,
+      removeUploadedFile: PropTypes.func.isRequired
+    })
   };
-
-  onNextButtonClick = nextScreen => {
-    this.props.handleNextButtonClick(nextScreen);
+  static defaultProps = {
+    sharedStore: PropTypes.shape({
+      isSuccessfullUploaded: false,
+      userName: "",
+      inputValue: "",
+      originalFileName: ""
+    })
   };
-  handleUploadFile = uploadedZip => {
-    this.props.handleUploadFile(uploadedZip, "zipFile");
-  };
-
-  handleRemoveUploadedZip(archivePath) {
-    this.props.handleRemoveUploadedImage(archivePath);
-  }
-
   render() {
     const {
-      sharedData: { isSuccessfullUploaded, inputValue, userName },
-      zipData: { originalFileName, archivePath }
-    } = this.props;
+      userName,
+      isSuccessfullUploaded,
+      inputValue,
+      handleUploadFile,
+      goToNextScreen,
+      removeUploadedFile,
+      originalFileName
+    } = this.props.sharedStore;
     return (
       <div className="upload__zip">
         <h3 className="upload__zip__title">Upload photo library</h3>
@@ -58,7 +64,7 @@ export default class UploadZip extends Component {
           )}
         >
           <div
-            onClick={() => this.handleRemoveUploadedZip(archivePath)}
+            onClick={() => removeUploadedFile("zip")}
             className="upload__zip__cancel__icon"
           >
             <Image src={cancelIcon} />
@@ -71,12 +77,12 @@ export default class UploadZip extends Component {
             <UploadButton
               accept=".zip"
               inputValue={inputValue}
-              onChange={this.handleUploadFile}
+              onChange={uploadedFile => handleUploadFile(uploadedFile, "zip")}
             >
               Browser
             </UploadButton>
           ) : (
-            <Button onClick={() => this.onNextButtonClick("third")} next>
+            <Button onClick={() => goToNextScreen("third")} next>
               Next
             </Button>
           )}

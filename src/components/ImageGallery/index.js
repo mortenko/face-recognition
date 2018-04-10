@@ -1,36 +1,61 @@
 // TODO implement FLOW
 import React, { Component, Fragment } from "react";
+import { observer, inject } from "mobx-react";
+import { PropTypes } from "prop-types";
 import downloadIcon from "assets/download_icon.svg";
 import shareIcon from "assets/share_icon.svg";
 import Image from "components/Image";
+import Spinner from "components/Spinner";
 import pathParse from "path-parse";
-import PhotoDetail from "components/PhotoDetail";
+import MarkedPhotoDetail from "components/MarkedPhotoDetail";
+import GallerySpinner from "assets/gif/gallery_search.gif";
 import "./styles.css";
 
+@inject(stores => ({
+  domainStore: stores.rootStore.domainStore,
+  sharedStore: stores.rootStore.sharedStore
+}))
+@observer
 export default class ImageGallery extends Component {
-  handleRemoveUploadedFile() {
-    console.log("remove file");
-  }
-  handleClickedPhoto(path, photoName) {
-    this.props.handleClickedPhoto(path, photoName);
-  }
-  goBack = () => {
-    console.log("imageGallery");
-    this.props.goBack();
+  static propTypes  = {
+    domainStore: PropTypes.shape({
+      photos: PropTypes.array,
+      matchedPath: PropTypes.string,
+      photoName: PropTypes.string,
+      handleClickedPhoto: PropTypes.func,
+      goBackToGallery: PropTypes.func,
+      removePhotoFromGallery: PropTypes.func
+    }).isRequired,
+    sharedStore: PropTypes.shape({
+      userName: PropTypes.string,
+      originalFileName: PropTypes.string
+    })
   };
+  static defaultProps = {
+    sharedStore: PropTypes.shape({
+      userName: "",
+      originalFileName: ""
+    })
+  };
+
   render() {
+    const { userName, originalFileName } = this.props.sharedStore;
     const {
-      matchedPathFiles: { photos, matchedPath, photoName },
-      sharedData: { userName },
-      zipData: { originalFileName }
-    } = this.props;
+      photos,
+      matchedPath,
+      photoName,
+      handleClickedPhoto,
+      goBackToGallery,
+      removePhotoFromGallery,
+      getActualState
+    } = this.props.domainStore;
     return (
       <div className="gallery">
         {matchedPath !== "" ? (
-          <PhotoDetail
+          <MarkedPhotoDetail
             photoName={photoName}
             userName={userName}
-            goBack={this.goBack}
+            goBackToGallery={goBackToGallery}
             matchedPath={matchedPath}
           />
         ) : (
@@ -54,8 +79,8 @@ export default class ImageGallery extends Component {
               </div>
             </div>
             <div className="gallery__content">
-              {photos.length === 0 ? (
-                <h1 className="spinner">LOADING MATCHED PHOTOS...</h1>
+              {getActualState === "pending" ? (
+                <Spinner src={GallerySpinner} />
               ) : (
                 photos.map(srcPath => {
                   const relativePath = srcPath.split("public/").pop();
@@ -64,7 +89,7 @@ export default class ImageGallery extends Component {
                     <div
                       className="gallery__photo"
                       onClick={() =>
-                        this.handleClickedPhoto(relativePath, parseImgPath.base)
+                        handleClickedPhoto(relativePath, parseImgPath.base)
                       }
                     >
                       <Image
@@ -72,7 +97,7 @@ export default class ImageGallery extends Component {
                         src={relativePath}
                         height={262}
                         width={200}
-                        handleRemoveUploadedFile={this.handleRemoveUploadedFile}
+                        removeFile={() => removePhotoFromGallery(srcPath)}
                         remove
                       />
                       <span className="gallery__photo__name">
