@@ -8,14 +8,20 @@ export const DomainModel = types
     photos: types.optional(types.array(types.string), []),
     matchedPath: "",
     photoName: "",
-    state: types.optional(types.enumeration("State", ["pending", "done", "error"]),"pending")
+    state: types.optional(
+      types.enumeration("State", ["pending", "done", "error"]),
+      "pending"
+    )
   })
   .views(self => ({
     get getSharedStore() {
-      return getRoot(self).sharedStore
+      return getRoot(self).sharedStore;
     },
     get getActualState() {
-      return self.state
+      return self.state;
+    },
+    get getPhotos() {
+      return self.photos;
     }
   }))
   .actions(self => ({
@@ -27,6 +33,7 @@ export const DomainModel = types
         originalFileName,
         rootUniqueDirName
       } = self.getSharedStore;
+
       self.state = "pending";
       try {
         const { data } = yield axios.post("/file/unzip", {
@@ -37,8 +44,8 @@ export const DomainModel = types
           rootUniqueDirName
         });
         self.state = "done";
-        self.marked_photos = data.marked_photos;
-        self.photos = data.photos;
+        self.marked_photos = self.parsePhotoPath(data.marked_photos);
+        self.photos = self.parsePhotoPath(data.photos);
       } catch (error) {
         self.state = "error";
         throw new Error(error);
@@ -50,14 +57,28 @@ export const DomainModel = types
         const markedPhotoName = pathParse(markedPhotoPath);
         if (photoPath.name === markedPhotoName.name) {
           self.photoName = photoName;
-          self.matchedPath = markedPhotoPath.split("public/").pop();
+          self.matchedPath = markedPhotoPath;
         }
+      });
+    },
+    parsePhotoPath: photoPath => {
+      return photoPath.map(path => {
+        const parsedPath = path.split("public/").pop();
+        return parsedPath;
       });
     },
     goBackToGallery: () => {
       self.matchedPath = "";
     },
-    removePhotoFromGallery: () => {
-      console.log("remove file");
-    }
+    removePhotoFromGallery: flow(function*(event, filePath) {
+      event.stopPropagation();
+      try {
+        yield axios.post(`/file/remove`, { filePath });
+        self.photos = self.photos.filter(photoPath => {
+          return photoPath !== filePath;
+        });
+      } catch (error) {
+        throw new Error(error);
+      }
+    })
   }));

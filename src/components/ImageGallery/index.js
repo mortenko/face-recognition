@@ -17,13 +17,14 @@ import "./styles.css";
 }))
 @observer
 export default class ImageGallery extends Component {
-  static propTypes  = {
+  static propTypes = {
     domainStore: PropTypes.shape({
       photos: PropTypes.array,
       matchedPath: PropTypes.string,
       photoName: PropTypes.string,
       handleClickedPhoto: PropTypes.func,
       goBackToGallery: PropTypes.func,
+      getActualState: PropTypes.func,
       removePhotoFromGallery: PropTypes.func
     }).isRequired,
     sharedStore: PropTypes.shape({
@@ -41,7 +42,7 @@ export default class ImageGallery extends Component {
   render() {
     const { userName, originalFileName } = this.props.sharedStore;
     const {
-      photos,
+      getPhotos,
       matchedPath,
       photoName,
       handleClickedPhoto,
@@ -82,8 +83,7 @@ export default class ImageGallery extends Component {
               {getActualState === "pending" ? (
                 <Spinner src={GallerySpinner} />
               ) : (
-                photos.map(srcPath => {
-                  const relativePath = srcPath.split("public/").pop();
+                getPhotos.map(relativePath => {
                   const parseImgPath = pathParse(relativePath);
                   return (
                     <div
@@ -97,7 +97,9 @@ export default class ImageGallery extends Component {
                         src={relativePath}
                         height={262}
                         width={200}
-                        removeFile={() => removePhotoFromGallery(srcPath)}
+                        removeFile={event =>
+                          removePhotoFromGallery(event, relativePath)
+                        }
                         remove
                       />
                       <span className="gallery__photo__name">

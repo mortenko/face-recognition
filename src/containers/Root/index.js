@@ -9,7 +9,7 @@ import "./styles.css";
 
 const Root = inject(stores => ({
   activeScreen: stores.rootStore.sharedStore.activeScreen,
-  handleBackButtonClick: stores.rootStore.sharedStore.handleBackButtonClick,
+  goToPreviousScreen: stores.rootStore.sharedStore.goToPreviousScreen,
   matchedPath: stores.rootStore.domainStore.matchedPath
 }))(
   observer(({ activeScreen, goToPreviousScreen, matchedPath }) => {
