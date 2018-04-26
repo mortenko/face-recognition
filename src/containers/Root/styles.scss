@@ -12,12 +12,18 @@
 
 .card__popup__gallery {
   @extend .card__popup;
-  @include padding(21px,62px,28px,28px);
+  @include padding(21px, 62px, 28px, 28px);
   @include size(auto, 1153px);
   margin-left: auto;
   margin-right: auto;
 }
 
+.card__popup__photo {
+  @extend .card__popup__gallery;
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
 .card__popup__header {
   position: relative;
+  height: 20px;
 }

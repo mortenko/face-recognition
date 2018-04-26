@@ -4,7 +4,7 @@ import plusIcon from "assets/plus_icon.svg";
 import Image from "components/Image";
 import "./styles.css";
 
-const UploadButton = props => (
+const UploadButton = ({ inputValue, accept, onChange, children }) => (
   <label htmlFor="file" className="button__upload">
     <div className="button--plus">
       <Image src={plusIcon} width={17} height={15} />
@@ -12,19 +12,19 @@ const UploadButton = props => (
     <input
       id="file"
       type="file"
-      value={props.inputValue}
+      value={inputValue}
       name="uploadFile"
-      accept={props.accept}
-      onChange={props.onChange}
+      accept={accept}
+      onChange={onChange}
     />
-    <span className="button__text">{props.children}</span>
+    <span className="button__text">{children}</span>
   </label>
 );
 UploadButton.propTypes = {
-  accept: PropTypes.string.isRequired,
-  inputValue: PropTypes.string.isRequired,
-  onChange: PropTypes.func.isRequired,
-  children: PropTypes.node.isRequired
-};
+  accept: PropTypes.string,
+  inputValue: PropTypes.string,
+  onChange: PropTypes.func,
+  children: PropTypes.node
+}.isRequired;
 
 export default UploadButton;

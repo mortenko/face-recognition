@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="31" height="40" viewBox="0 0 31 40">
+    <defs>
+        <path id="b" d="M176 418l7.672 7.274a1 1 0 0 1 0 1.452L176 434"/>
+        <filter id="a" width="550%" height="325%" x="-225%" y="-100%" filterUnits="objectBoundingBox">
+            <feMorphology in="SourceAlpha" operator="dilate" radius="2" result="shadowSpreadOuter1"/>
+            <feMorphology in="SourceAlpha" radius="2" result="shadowInner"/>
+            <feComposite in="shadowOffsetOuter1" in2="shadowInner" operator="out" result="shadowOffsetOuter1"/>
+            <feGaussianBlur in="shadowOffsetOuter1" result="shadowBlurOuter1" stdDeviation="5"/>
+            <feColorMatrix in="shadowBlurOuter1" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.5 0"/>
+        </filter>
+    </defs>
+    <g fill="none" fill-rule="evenodd" stroke-linecap="round" transform="rotate(-180 98 224)">
+        <use fill="#000" filter="url(#a)" xlink:href="#b"/>
+        <use stroke="#FFF" stroke-width="4" xlink:href="#b"/>
+    </g>
+</svg>

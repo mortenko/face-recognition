@@ -2,44 +2,48 @@
 
 import React, { Component } from "react";
 import { PropTypes } from "prop-types";
+import { observer, inject } from "mobx-react";
 import { UploadButton, Button } from "components/Button";
 import Image from "components/Image";
 import "./styles.css";
 
-
-// Export this for unit testing more easily
+@inject(stores => ({
+  sharedStore: stores.rootStore.sharedStore
+}))
+@observer
 export default class UploadImage extends Component {
   static propTypes = {
-    sharedData: PropTypes.shape({
+    sharedStore: PropTypes.shape({
       isSuccessfullUploaded: PropTypes.bool,
       userName: PropTypes.string,
-      inputValue: PropTypes.string
-    }).isRequired,
-    imageData: PropTypes.objectOf(PropTypes.string).isRequired,
-    handleNextButtonClick: PropTypes.func.isRequired,
-    handleUploadFile: PropTypes.func.isRequired,
-    onHandleUserName: PropTypes.func.isRequired,
-    handleRemoveUploadedImage: PropTypes.func.isRequired
+      inputValue: PropTypes.string,
+      imagePath: PropTypes.string,
+      goToNextScreen: PropTypes.func.isRequired,
+      handleUploadFile: PropTypes.func.isRequired,
+      onHandleUserName: PropTypes.func.isRequired,
+      removeUploadedFile: PropTypes.func.isRequired
+    })
   };
-  onHandleUserName = event => {
-    this.props.onHandleUserName(event);
+  static defaultProps = {
+    sharedStore: PropTypes.shape({
+      isSuccessfullUploaded: false,
+      userName: "",
+      inputValue: "",
+      imagePath: ""
+    })
   };
-
-  onNextButtonClick(nextScreen) {
-    this.props.handleNextButtonClick(nextScreen);
-  }
-  handleUploadFile = uploadedFile => {
-    this.props.handleUploadFile(uploadedFile, "image");
-  };
-  handleRemoveUploadedImage(imagePath) {
-    this.props.handleRemoveUploadedImage(imagePath);
-  }
 
   render() {
     const {
-      sharedData: { userName, isSuccessfullUploaded, inputValue },
-      imageData: { imagePath }
-    } = this.props;
+      userName,
+      isSuccessfullUploaded,
+      inputValue,
+      onHandleUserName,
+      handleUploadFile,
+      goToNextScreen,
+      removeUploadedFile,
+      imagePath
+    } = this.props.sharedStore;
     return (
       <div className="upload__photo">
         <div className="upload__photo__title">Upload reference face photo</div>
@@ -52,7 +56,7 @@ export default class UploadImage extends Component {
             id="name"
             className="upload__input__name"
             value={userName}
-            onChange={event => this.onHandleUserName(event)}
+            onChange={event => onHandleUserName(event)}
             type="text"
             placeholder="Specify person's name"
           />
@@ -67,13 +71,9 @@ export default class UploadImage extends Component {
         <div className="upload__photo__content">
           {isSuccessfullUploaded && (
             <Image
-              width={284}
-              height={215}
-              remove
               src={imagePath}
-              handleRemoveUploadedFile={() =>
-                this.handleRemoveUploadedImage(imagePath)
-              }
+              removeFile={() => removeUploadedFile("image")}
+              remove
             />
           )}
         </div>
@@ -81,13 +81,13 @@ export default class UploadImage extends Component {
           {isSuccessfullUploaded === false ? (
             <UploadButton
               inputValue={inputValue}
-              onChange={this.handleUploadFile}
+              onChange={uploadedFile => handleUploadFile(uploadedFile, "image")}
               accept=".jpg,.png"
             >
               Browser
             </UploadButton>
           ) : (
-            <Button onClick={() => this.onNextButtonClick("second")} next>
+            <Button onClick={() => goToNextScreen("second")} next>
               Next
             </Button>
           )}

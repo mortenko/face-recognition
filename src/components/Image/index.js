@@ -4,28 +4,27 @@ import cancelIcon from "assets/cancel_icon.svg";
 import "./styles.css";
 
 const Image = props => {
-  const { handleRemoveUploadedFile, src, remove, ...rest } = props;
+  const { removeFile, src, remove, ...rest } = props;
   return (
-    <div className="image">
+    <div className="image__container">
       {remove && (
-        <div className="image__cancel__icon" onClick={handleRemoveUploadedFile}>
+        <div className="image__cancel__icon" onClick={removeFile}>
           <img src={cancelIcon} alt="cancel_icon" />
         </div>
       )}
-      <img src={src} alt={src} {...rest} />
+      <img className="image__photo" src={src} alt={src} {...rest} />
     </div>
   );
 };
 
-Image.propTypes = {
-  handleRemoveUploadedFile: PropTypes.func,
-  remove: PropTypes.bool,
-  src: PropTypes.string.isRequired
-};
-
 Image.defautProps = {
   remove: false,
-  handleRemoveUploadedFile: () => {}
+  removeFile: () => {}
+};
+Image.propTypes = {
+  removeFile: PropTypes.func,
+  remove: PropTypes.bool,
+  src: PropTypes.string.isRequired
 };
 
 export default Image;

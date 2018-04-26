@@ -29,7 +29,14 @@
     padding-top: 14px;
   }
 }
-
 .photo__marked {
   text-align: center;
+  .image__photo {
+    height: 100%;
+    width: auto;
+  }
+}
+
+.photo__text {
+  color: $white;
 }

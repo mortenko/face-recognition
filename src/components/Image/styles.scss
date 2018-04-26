@@ -1,9 +1,8 @@
 @import "styles/mixins";
 
-.image {
+.image__container {
   position: relative;
 }
-
 .image__cancel__icon {
   position: absolute;
   right: -5px;

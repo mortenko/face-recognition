@@ -1,4 +1,4 @@
-.card__popup, .card__popup__gallery {
+.card__popup, .card__popup__gallery, .card__popup__photo {
   height: 620px;
   width: 343px;
   margin-top: 20px;
@@ -8,7 +8,7 @@
   border-radius: 31px;
   box-shadow: 0 2px 8px 0 rgba(0, 0, 0, 0.25); }
 
-.card__popup__gallery {
+.card__popup__gallery, .card__popup__photo {
   padding-top: 21px;
   padding-bottom: 62px;
   padding-left: 28px;
@@ -18,5 +18,9 @@
   margin-left: auto;
   margin-right: auto; }
 
+.card__popup__photo {
+  background-color: rgba(0, 0, 0, 0.2); }
+
 .card__popup__header {
-  position: relative; }
+  position: relative;
+  height: 20px; }
