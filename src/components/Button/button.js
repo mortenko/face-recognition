@@ -1,7 +1,7 @@
 import React from "react";
 import { PropTypes } from "prop-types";
 import NextIcon from "assets/next_icon.svg";
-import BackIcon from "assets/back_icon.svg";
+import BackIcon from "assets/back_white_icon.svg";
 import Image from "components/Image";
 import "./styles.css";
 

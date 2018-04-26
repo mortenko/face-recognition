@@ -11,18 +11,33 @@ export const SharedModel = types
     imagePath: "",
     archivePath: "",
     originalFileName: "",
-    state: types.optional(types.enumeration("State", ["pending", "done", "error"]),"pending")
-  }).views(self => ({
-     get getDomainStore(){
+    state: types.optional(
+      types.enumeration("State", ["pending", "done", "error"]),
+      "pending"
+    )
+  })
+  .views(self => ({
+    get getDomainStore() {
       return getRoot(self).domainStore;
-     }
+    },
+    get setUIStyle() {
+      let setStyle = null;
+      const { matchedPath } = self.getDomainStore;
+      if (self.activeScreen === "third" && matchedPath === "") {
+        setStyle = "card__popup__gallery";
+      } else if (matchedPath !== "") {
+        setStyle = "card__popup__photo";
+      } else {
+        setStyle = "card__popup";
+      }
+      return setStyle;
+    }
   }))
   .actions(self => ({
     onHandleUserName(event) {
       self.userName = event.target.value;
     },
     handleUploadFile: flow(function* handleUploadFile(uploadedFile, fileType) {
-  //    console.log(`uploadedFile: ${uploadedFile} fileType ${fileType}`);
       const file = uploadedFile.target.files[0];
       const formData = new FormData();
       const config = {
@@ -50,21 +65,17 @@ export const SharedModel = types
         self.state = "error";
       }
     }),
-    goToNextScreen(step) {
+    goToNextScreen: step => {
+      self.activeScreen = step;
+      //self.isSuccessfullUploaded = false;
       self.archivePath === ""
         ? (self.isSuccessfullUploaded = false)
         : (self.isSuccessfullUploaded = true);
-
-      self.activeScreen = step;
-      if (
-        self.archivePath !== "" &&
-        self.imagePath !== "" &&
-        step === "third"
-      ) {
+      if (self.activeScreen === "third") {
         self.getDomainStore.handleUnZipFile();
       }
     },
-    removeUploadedFile(fileType) {
+    removeUploadedFile: fileType => {
       if (fileType === "image") {
         self.imagePath = "";
       } else if (fileType === "zip") {
@@ -73,7 +84,7 @@ export const SharedModel = types
       self.isSuccessfullUploaded = false;
       self.inputValue = "";
     },
-    goToPreviousScreen(activeScreen) {
+    goToPreviousScreen: activeScreen => {
       if (activeScreen === "third") {
         self.activeScreen = "second";
       } else {
@@ -82,4 +93,3 @@ export const SharedModel = types
       self.isSuccessfullUploaded = true;
     }
   }));
-

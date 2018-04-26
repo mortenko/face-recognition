@@ -6,13 +6,13 @@ import "./styles.css";
 const Image = props => {
   const { removeFile, src, remove, ...rest } = props;
   return (
-    <div className="image">
+    <div className="image__container">
       {remove && (
         <div className="image__cancel__icon" onClick={removeFile}>
           <img src={cancelIcon} alt="cancel_icon" />
         </div>
       )}
-      <img src={src} alt={src} {...rest} />
+      <img className="image__photo" src={src} alt={src} {...rest} />
     </div>
   );
 };

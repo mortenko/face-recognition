@@ -6,9 +6,11 @@ export const DomainModel = types
   .model("DomainModel", {
     marked_photos: types.optional(types.array(types.string), []),
     photos: types.optional(types.array(types.string), []),
+    originalPath: "",
     matchedPath: "",
+    extractDir: "",
     photoName: "",
-    state: types.optional(
+    fetchState: types.optional(
       types.enumeration("State", ["pending", "done", "error"]),
       "pending"
     )
@@ -17,11 +19,14 @@ export const DomainModel = types
     get getSharedStore() {
       return getRoot(self).sharedStore;
     },
-    get getActualState() {
-      return self.state;
+    get getActualFetchState() {
+      return self.fetchState;
     },
     get getPhotos() {
       return self.photos;
+    },
+    get getOriginalPath() {
+      return self.originalPath;
     }
   }))
   .actions(self => ({
@@ -34,25 +39,30 @@ export const DomainModel = types
         rootUniqueDirName
       } = self.getSharedStore;
 
-      self.state = "pending";
+      self.fetchState = "pending";
       try {
-        const { data } = yield axios.post("/file/unzip", {
-          userName,
-          imagePath,
-          archivePath,
-          originalFileName,
-          rootUniqueDirName
-        });
-        self.state = "done";
-        self.marked_photos = self.parsePhotoPath(data.marked_photos);
-        self.photos = self.parsePhotoPath(data.photos);
+        const { data: { pythonResponse, extractDir } } = yield axios.post(
+          "/file/unzip",
+          {
+            userName,
+            imagePath,
+            archivePath,
+            originalFileName,
+            rootUniqueDirName
+          }
+        );
+        const photoData = JSON.parse(pythonResponse);
+        self.extractDir = extractDir;
+        self.marked_photos = self.parsePhotoPath(photoData.marked_photos);
+        self.photos = self.parsePhotoPath(photoData.photos);
+        self.fetchState = "done";
       } catch (error) {
-        self.state = "error";
-        throw new Error(error);
+        self.fetchState = "error";
       }
     }),
-    handleClickedPhoto: (path, photoName) => {
-      const photoPath = pathParse(path);
+    handleClickedPhoto: (filePath, photoName) => {
+      const photoPath = pathParse(filePath);
+      self.originalPath = filePath;
       self.marked_photos.forEach(markedPhotoPath => {
         const markedPhotoName = pathParse(markedPhotoPath);
         if (photoPath.name === markedPhotoName.name) {
@@ -62,15 +72,23 @@ export const DomainModel = types
       });
     },
     parsePhotoPath: photoPath => {
-      return photoPath.map(path => {
-        const parsedPath = path.split("public/").pop();
-        return parsedPath;
-      });
+      let parsedPath = null;
+      if (Array.isArray(photoPath)) {
+        return photoPath.map(path => {
+          parsedPath = path.split("public/").pop();
+          return parsedPath;
+        });
+      }
+      parsedPath = photoPath.split("public/").pop();
+      return parsedPath;
     },
     goBackToGallery: () => {
       self.matchedPath = "";
     },
-    removePhotoFromGallery: flow(function*(event, filePath) {
+    removePhotoFromGallery: flow(function* removePhotoFromGallery(
+      event,
+      filePath
+    ) {
       event.stopPropagation();
       try {
         yield axios.post(`/file/remove`, { filePath });

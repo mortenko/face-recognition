@@ -1,12 +1,10 @@
-const express = require("express");
-const router = express.Router();
 const path = require("path");
 const fs = require("fs");
 const multiparty = require("multiparty");
 const uuidv1 = require("uuid/v1");
 const wrapWithPromise = require("../utils");
 
-function fileUpload(req, res)  {
+function fileUpload(req, res) {
   const form = new multiparty.Form();
   form.parse(req, async (err, fields, files) => {
     let rootUniqueDirName = fields.rootUniqueDirName[0];
@@ -19,9 +17,12 @@ function fileUpload(req, res)  {
     }
     const rootDirectoryPath = path.join(rootPath, rootUniqueDirName);
 
-    // maybe should be asynchronous
     if (!fs.existsSync(rootDirectoryPath)) {
-      fs.mkdirSync(rootDirectoryPath);
+      try {
+        await wrapWithPromise(fs.mkdir)(rootDirectoryPath);
+      } catch (createRootDirErr) {
+        res.status(500).send(createRootDirErr);
+      }
     }
     const fileUniqueName = `${uuidv1()}__${originalFileName}`;
     const targetPath = path.join(rootDirectoryPath, fileUniqueName);
@@ -38,6 +39,6 @@ function fileUpload(req, res)  {
       console.log(error);
     }
   });
-};
+}
 
 module.exports = fileUpload;

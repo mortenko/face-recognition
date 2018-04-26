@@ -71,8 +71,6 @@ export default class UploadImage extends Component {
         <div className="upload__photo__content">
           {isSuccessfullUploaded && (
             <Image
-              width={284}
-              height={215}
               src={imagePath}
               removeFile={() => removeUploadedFile("image")}
               remove

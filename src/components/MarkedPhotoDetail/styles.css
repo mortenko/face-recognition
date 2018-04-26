@@ -27,3 +27,9 @@
 
 .photo__marked {
   text-align: center; }
+  .photo__marked .image__photo {
+    height: 100%;
+    width: auto; }
+
+.photo__text {
+  color: #fff; }
